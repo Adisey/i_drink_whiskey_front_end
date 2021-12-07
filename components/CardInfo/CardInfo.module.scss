@@ -1,0 +1,82 @@
+@import "../../styles/globals.module.scss";
+
+.cardInfo {
+	display: grid;
+
+	min-height: 100vh;
+
+	border: 1px solid red;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: auto 1fr;
+	gap: 30px;
+	grid-template-areas:
+		"title title"
+		"fields pictures";
+
+	.title {
+		display: grid;
+		grid-area: title;
+		grid-template-columns: 1fr auto;
+		gap: 10px;
+		grid-template-areas: "name rating";
+
+		padding: 25px;
+
+		border: 1px solid green;
+
+		.name {
+			border: 1px solid blue;
+
+			font-weight: 700;
+			grid-area: name;
+		}
+
+		.rating {
+			border: 1px solid red;
+
+			font-weight: 500;
+			grid-area: rating;
+		}
+
+		@media (max-width: 765px) {
+			color: $primary-color;
+			grid-template-columns: 1fr;
+			grid-template-rows: 1fr 1fr;
+			grid-template-areas: "name" "rating";
+		}
+	}
+
+	.fields {
+		grid-area: fields;
+
+		border: 1px solid blue;
+
+		.field {
+			.name {
+				border: 1px solid red;
+			}
+
+			.value {
+				border: 1px solid green;
+			}
+		}
+	}
+
+	.pictures {
+		grid-area: pictures;
+
+		border: 1px solid blueviolet;
+
+		.picture {
+			border: 1px solid red;
+		}
+
+		.preview {
+			border: 1px solid orangered;
+
+			.picture {
+				border: 1px solid green;
+			}
+		}
+	}
+}

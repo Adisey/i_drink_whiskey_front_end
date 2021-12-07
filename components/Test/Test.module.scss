@@ -1,11 +1,17 @@
-.aaa{
-  color: red;
+@import "../../styles/globals.module.scss";
+
+.aaa {
+	color: red;
+
+	.xxx {
+		fill: blueviolet;
+	}
+
+	.bbb {
+		color: greenyellow;
+	}
 }
 
-
-.bbb{
-  color: green;
-}
-.ccc{
-  color: blue;
+.ccc {
+	color: $primary-color;
 }

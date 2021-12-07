@@ -4,10 +4,10 @@ import styles from "./Test.module.scss";
 
 export const Test = (): JSX.Element => {
   return (
-    <div>
-      <div className={styles.aaa}>TEST</div>
-      <div className={styles.bbb}>TEST</div>
-      <div className={styles.ccc}>TEST</div>
+    <div className={styles.aaa}>
+      text
+      <div className={styles.bbb}>Style bbb</div>
+      <div className={styles.ccc}>Style ccc</div>
     </div>
   );
 };
