@@ -3,7 +3,7 @@
 .cardInfo {
 	display: grid;
 
-	min-height: 100vh;
+	height: 400px;
 
 	border: 1px solid red;
 	grid-template-columns: 1fr 1fr;
@@ -52,12 +52,27 @@
 		border: 1px solid blue;
 
 		.field {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			grid-template-areas: "name value";
+
 			.name {
+				grid-area: name;
+
 				border: 1px solid red;
 			}
 
 			.value {
+				grid-area: value;
+
 				border: 1px solid green;
+			}
+
+			@media (max-width: 765px) {
+				grid-template-columns: 1fr;
+				grid-template-rows: 1fr 1fr;
+
+				grid-template-areas: "name" "value";
 			}
 		}
 	}
@@ -68,14 +83,45 @@
 		border: 1px solid blueviolet;
 
 		.picture {
+			align-content: center;
+			justify-content: center;
+
+			height: 200px;
+
+			text-align: center;
+
 			border: 1px solid red;
+
+			img {
+				max-width: 150px;
+				max-height: 150px;
+			}
 		}
 
 		.preview {
+			display: grid;
+			justify-content: center;
+
+			padding: 10px 30px;
+
 			border: 1px solid orangered;
+			grid-auto-flow: column;
 
 			.picture {
+				align-content: center;
+				justify-content: center;
+
+				width: 50px;
+				height: 50px;
+
+				text-align: center;
+
 				border: 1px solid green;
+
+				img {
+					max-width: 50px;
+					max-height: 50px;
+				}
 			}
 		}
 	}

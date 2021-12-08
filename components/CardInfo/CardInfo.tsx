@@ -2,6 +2,12 @@ import React from "react";
 
 import Styles from "./CardInfo.module.scss";
 
+import p1 from "./temp/332221-big.jpg";
+import p2 from "./temp/200382-big.jpg";
+import p3 from "./temp/187296-big.jpg";
+import p4 from "./temp/187295-big.jpg";
+import p5 from "./temp/187294-big.jpg";
+
 export const CardInfo = (): JSX.Element => {
   return (
     <div className={Styles.cardInfo}>
@@ -28,12 +34,25 @@ export const CardInfo = (): JSX.Element => {
         </div>
       </div>
       <div className={Styles.pictures}>
-        <div className={Styles.picture}>BIG PIC</div>
+        <div className={Styles.picture}>
+          <img src={p1.src} />
+        </div>
         <div className={Styles.preview}>
-          <div className={Styles.preview}>Pic1</div>
-          <div className={Styles.preview}>Pic2</div>
-          <div className={Styles.preview}>Pic3</div>
-          <div className={Styles.preview}>Pic4</div>
+          <div className={Styles.picture}>
+            <img src={p1.src} />
+          </div>
+          <div className={Styles.picture}>
+            <img src={p2.src} />
+          </div>
+          <div className={Styles.picture}>
+            <img src={p3.src} />
+          </div>
+          <div className={Styles.picture}>
+            <img src={p4.src} />
+          </div>
+          <div className={Styles.picture}>
+            <img src={p5.src} />
+          </div>
         </div>
       </div>
     </div>
