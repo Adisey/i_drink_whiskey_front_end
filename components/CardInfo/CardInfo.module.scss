@@ -125,4 +125,11 @@
 			}
 		}
 	}
+
+	@media (max-width: 765px) {
+		grid-template-columns: 1fr;
+		grid-template-areas: "title" "fields" "pictures";
+
+		height: 100%;
+	}
 }

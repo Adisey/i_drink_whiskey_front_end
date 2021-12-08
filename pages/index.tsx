@@ -1,6 +1,7 @@
-import type { NextPage } from "next";
 import React from "react";
+import type { NextPage } from "next";
 import { CardInfo } from "../components";
+import { withLayout } from "../layout/Layout";
 
 const Home: NextPage = (): JSX.Element => {
   return (
@@ -10,4 +11,4 @@ const Home: NextPage = (): JSX.Element => {
   );
 };
 
-export default Home;
+export default withLayout(Home);
