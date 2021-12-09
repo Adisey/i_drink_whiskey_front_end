@@ -1,15 +1,14 @@
 import React from "react";
 import type { GetStaticProps } from "next";
-import { MenuItem } from "../interfaces/menu.interface";
-import { CardInfo } from "../components";
-import { withLayout } from "../layout/Layout";
-import { getMenu } from "../api";
+import { MenuItem } from "../../interfaces/menu.interface";
+import { withLayout } from "../../layout/Layout";
+import { getMenu } from "../../api";
 
-interface HomeProps extends Record<string, unknown> {
+interface WhiskyMainProps extends Record<string, unknown> {
   menu: MenuItem[];
 }
 
-const Home = ({ menu }: HomeProps): JSX.Element => {
+const WhiskyMain = ({ menu }: WhiskyMainProps): JSX.Element => {
   console.log(+new Date(), "-(Home)->", typeof menu, `-menu->`, menu);
   return (
     <div>
@@ -18,14 +17,13 @@ const Home = ({ menu }: HomeProps): JSX.Element => {
           <li key={i.id.secondCategory}>{i.id.secondCategory}</li>
         ))}
       </ul>
-      <CardInfo />
     </div>
   );
 };
 
-export default withLayout(Home);
+export default withLayout(WhiskyMain);
 
-export const getStaticProps: GetStaticProps<HomeProps> = async () => {
+export const getStaticProps: GetStaticProps<WhiskyMainProps> = async () => {
   const menu = getMenu();
   return {
     props: {
