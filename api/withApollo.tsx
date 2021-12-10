@@ -1,7 +1,6 @@
 import {
   ApolloClient,
   ApolloProvider,
-  DefaultOptions,
   HttpLink,
   InMemoryCache,
 } from "@apollo/client";
@@ -10,10 +9,12 @@ import nextWithApollo from "next-with-apollo";
 
 const withApollo = nextWithApollo(
   ({ initialState, headers }) => {
+    const backendHost =
+      process?.env?.NEXT_PUBLIC_BACKEND || "192.168.50.200:4000";
     return new ApolloClient({
       ssrMode: typeof window === "undefined",
       link: new HttpLink({
-        uri: "http://192.168.50.200:4000/graphql",
+        uri: `http://${backendHost}:4000/graphql`,
       }),
       headers: {
         ...(headers as Record<string, string>),
