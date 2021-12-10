@@ -1,30 +1,31 @@
 import React from "react";
-import type { GetStaticProps } from "next";
-import { MenuItem } from "../interfaces/menu.interface";
 import { CardInfo } from "../components";
 import { withLayout } from "../layout/Layout";
-import { getMenu } from "../api";
-import withApollo from "../lib/withApollo";
-import { CharactersQuery, useCharactersQuery } from "../generated";
+import withApollo from "../api/withApollo";
 import { getDataFromTree } from "@apollo/client/react/ssr";
-import { useAllPages } from "../generated/useAllPages";
+import { useAllPages } from "../hooks/QraphQL/useAllPages";
+import { IPageInfo } from "../interfaces/page.interface";
 
-interface HomeProps extends Record<string, unknown> {
-  // menu: MenuItem[];
-}
-
-const Home = ({}: // menu
-HomeProps): JSX.Element => {
-  // console.log(+new Date(), "-(Home)->", typeof menu, `-menu->`, menu);
-  // const { data } = useCharactersQuery();
+const Home = ({ ...props }): JSX.Element => {
+  console.log(+new Date(), "-()->", typeof props, `-props->`, props);
   const { data } = useAllPages();
-  console.log(+new Date(), "-(Home)->", typeof data, `-data->`, data);
+  console.log(
+    +new Date(),
+    "-(Home)->",
+    data?.pagesList?.length,
+    `-data->`,
+    // data,
+    data?.pagesList?.length
+  );
+  if (!data?.pagesList) {
+    return <div>Loading...</div>;
+  }
   return (
     <div>
       <ul>
-        {/*{menu.map((i: MenuItem) => (*/}
-        {/*  <li key={i.id.secondCategory}>{i.id.secondCategory}</li>*/}
-        {/*))}*/}
+        {data.pagesList.map((i: IPageInfo) => (
+          <li key={i.id}>{i.name}</li>
+        ))}
       </ul>
       <CardInfo />
     </div>
@@ -32,13 +33,3 @@ HomeProps): JSX.Element => {
 };
 
 export default withApollo(withLayout(Home), { getDataFromTree });
-// export default withApollo(Home, { getDataFromTree });
-
-// export const getStaticProps: GetStaticProps<HomeProps> = async () => {
-//   const menu = getMenu();
-//   return {
-//     props: {
-//       menu,
-//     },
-//   };
-// };
