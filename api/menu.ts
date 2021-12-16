@@ -94,12 +94,12 @@ export type ITempWhisky = {
   name: string;
 };
 
-type IMainGQLResponse = {
+export type IMainGQLResponse = {
   loading: boolean;
   data: any;
 };
 
-type IMenuResponse = IMainGQLResponse & {
+export type IMenuResponse = IMainGQLResponse & {
   data: {
     pagesListTree: {
       countries: ITempCountry[];

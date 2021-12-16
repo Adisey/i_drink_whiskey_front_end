@@ -1,3 +1,4 @@
+import React from "react";
 import { useMenu } from "../../api";
 import {
   ITempCountry,
@@ -10,9 +11,7 @@ import Styles from "./Menu.module.scss";
 
 export const Menu = (): JSX.Element => {
   const { loading, data } = useMenu();
-  console.log(+new Date(), "-($$)->", typeof loading, `-loading->`, loading);
   const menu = data?.pagesListTree.countries;
-  console.log(+new Date(), "-(********)->", typeof menu, `-menu->`, menu);
   if (loading) {
     return <div>Loading..</div>;
   }

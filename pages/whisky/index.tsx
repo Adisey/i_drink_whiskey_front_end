@@ -1,33 +1,63 @@
 import React from "react";
-import type { GetStaticProps } from "next";
-import { MenuItem } from "../../interfaces/menu.interface";
-import { withLayout } from "../../layout/Layout";
-import { getMenu } from "../../api";
+import { useMenu, useWhiskyList } from "../../api";
+import { pageWrapper } from "../../layout/pageWrapper";
+import { WhiskeyList } from "../../components";
 
-interface WhiskyMainProps extends Record<string, unknown> {
-  menu: MenuItem[];
-}
+const WhiskyMain = (): JSX.Element => {
+  const menu = useMenu();
+  console.log(
+    +new Date(),
+    "-(WhiskyMain)-menu-1->",
+    typeof menu,
+    `-menu->`,
+    menu
+  );
 
-const WhiskyMain = ({ menu }: WhiskyMainProps): JSX.Element => {
-  console.log(+new Date(), "-(Home)->", typeof menu, `-menu->`, menu);
+  const menuList = menu?.data?.pagesListTree?.countries;
+  console.log(
+    +new Date(),
+    "-(WhiskyMain)-menu-2->",
+    menu.loading,
+    menuList?.length,
+    `-menuList->`,
+    menuList
+  );
+
+  const { loading, data } = useWhiskyList();
+  console.log(
+    +new Date(),
+    "-(WhiskyMain)-WhiskyList-1->",
+    typeof loading,
+    `-loading->`,
+    loading
+  );
+  if (loading) {
+    return <div>Loading..</div>;
+  }
+  console.log(
+    +new Date(),
+    "-(WhiskyMain)-WhiskyList-2->",
+    typeof data,
+    `-data->`,
+    data
+  );
+
+  const whiskyList = data?.whiskyList?.list || [];
+
+  console.log(
+    +new Date(),
+    "-(WhiskyList)-WhiskyList-3->",
+    typeof whiskyList,
+    whiskyList.length,
+    `-whiskyList->`,
+    whiskyList
+  );
   return (
     <div>
-      <ul>
-        {menu.map((i: MenuItem) => (
-          <li key={i.id.secondCategory}>{i.id.secondCategory}</li>
-        ))}
-      </ul>
+      WhiskyMain
+      <WhiskeyList whiskyList={whiskyList} />
     </div>
   );
 };
 
-export default withLayout(WhiskyMain);
-
-export const getStaticProps: GetStaticProps<WhiskyMainProps> = async () => {
-  const menu = getMenu();
-  return {
-    props: {
-      menu,
-    },
-  };
-};
+export default pageWrapper(WhiskyMain);
