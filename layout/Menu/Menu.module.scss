@@ -1,0 +1,27 @@
+.menu {
+	margin: 5px;
+
+	border: 1px solid red;
+
+	.firstLevel {
+		color: darkviolet;
+
+		.secondLevel {
+			margin-left: 12px;
+
+			color: red;
+
+			.thirdLevel {
+				margin-left: 12px;
+
+				color: blue;
+
+				.fourthLevel {
+					margin-left: 12px;
+
+					color: green;
+				}
+			}
+		}
+	}
+}

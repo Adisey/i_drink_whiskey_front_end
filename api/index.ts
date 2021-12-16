@@ -1,2 +1,2 @@
-export { getMenu } from "./menu";
+export { getMenu, useMenu } from "./menu";
 export { getPage } from "./page";

@@ -1,7 +1,7 @@
 import * as Apollo from "@apollo/client";
 import { gql } from "@apollo/client";
 
-export const allPage = gql`
+const allPage = gql`
   query pagesList {
     pagesList {
       id
