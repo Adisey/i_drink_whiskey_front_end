@@ -1,3 +1,2 @@
-export { getMenu, useMenu } from "./menu";
-export { getPage } from "./page";
+export { useMenu } from "./menu";
 export { useWhiskyList } from "./whiskies";

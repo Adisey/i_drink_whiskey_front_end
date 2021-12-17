@@ -14,17 +14,18 @@ export type IWhiskyItem = {
   distilleryId?: string;
   distillery?: string;
 };
-export type IWhiskyListResponse = IMainGQLResponse & {
+
+export type IWhiskyListResponse = {
   data: {
     whiskyList: {
       list: IWhiskyItem[];
       totalCount: number;
     };
   };
-};
+} & IMainGQLResponse;
 
-const whiskyListGQL = gql`
-  query {
+export const whiskyListGQL = gql`
+  query WhiskyList {
     whiskyList(pageSize: 10000) {
       list {
         id
@@ -75,11 +76,3 @@ export function useWhisky() {
   const options = {};
   return Apollo.useQuery(whiskyGQL, options) as IWhiskyResponse;
 }
-
-export const getMockWhisky = () => {
-  return [
-    "61a77d2b477db2b34a7891b9",
-    "61a77d2b477db2b34a7891b9",
-    "61a7867069bf5fd897273847",
-  ];
-};

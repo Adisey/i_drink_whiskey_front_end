@@ -1,15 +1,16 @@
 import React from "react";
-import { useMenu } from "../../api";
 import {
   ITempCountry,
   ITempDistillery,
   ITempRegion,
   ITempWhisky,
 } from "../../api/menu";
+import { useMenu } from "../../api";
+import withApollo from "../withApollo";
 import cx from "classnames";
 import Styles from "./Menu.module.scss";
 
-export const Menu = (): JSX.Element => {
+const Menu = (): JSX.Element => {
   const { loading, data } = useMenu();
   const menu = data?.pagesListTree.countries;
   if (loading) {
@@ -60,3 +61,5 @@ export const Menu = (): JSX.Element => {
     </nav>
   );
 };
+
+export const MainMenu = withApollo(Menu);
