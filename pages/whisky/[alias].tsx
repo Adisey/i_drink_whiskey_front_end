@@ -1,3 +1,4 @@
+//Core
 import React from "react";
 import type {
   GetStaticPaths,
@@ -5,17 +6,17 @@ import type {
   GetStaticPropsContext,
 } from "next";
 import { ParsedUrlQuery } from "querystring";
+//Other
 import { CardInfo } from "../../components";
 import { withLayout } from "../../layout/Layout";
 import { Error404 } from "../404";
-import { pageWrapper } from "../../layout/pageWrapper";
 import {
   IWhiskyItem,
   IWhiskyListResponse,
   whiskyGQL,
   whiskyListGQL,
 } from "../../api/whiskies";
-import { graphqlClient } from "../../layout/withApollo";
+import { graphqlClient } from "../../api";
 
 interface WhiskyProps extends Record<string, unknown> {
   item: IWhiskyItem;
@@ -25,6 +26,7 @@ const Whisky = ({ item }: WhiskyProps): JSX.Element => {
   console.log(+new Date(), "-(Whisky)->", typeof item, `-item->`, item);
 
   if (!item) {
+    // ToDo: 17.12.2021 - may be go to WhiskyList
     return <Error404 />;
   }
 

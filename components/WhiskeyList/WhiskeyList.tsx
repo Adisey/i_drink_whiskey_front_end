@@ -9,13 +9,6 @@ interface IWhiskeyList {
 export const WhiskeyList: React.FC<IWhiskeyList> = ({
   whiskyList,
 }: IWhiskeyList) => {
-  console.log(
-    +new Date(),
-    "-(WhiskeyList)->",
-    whiskyList.length,
-    `-whiskeys->`,
-    whiskyList
-  );
   return (
     <div>
       WhiskeyList

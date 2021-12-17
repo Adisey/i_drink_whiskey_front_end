@@ -5,8 +5,7 @@ import {
   ITempRegion,
   ITempWhisky,
 } from "../../api/menu";
-import { useMenu } from "../../api";
-import withApollo from "../withApollo";
+import { withApollo, useMenu } from "../../api";
 import cx from "classnames";
 import Styles from "./Menu.module.scss";
 
