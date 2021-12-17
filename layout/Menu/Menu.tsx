@@ -11,7 +11,11 @@ import { getWhiskyPatch } from "../../domains/whisky";
 import cx from "classnames";
 import Styles from "./Menu.module.scss";
 
-const Menu = (): JSX.Element => {
+interface IPageProps {
+  asPath: string;
+}
+
+const Menu = ({ asPath }: IPageProps): JSX.Element => {
   const { loading, data } = useMenu();
   const menu = data?.pagesListTree.countries;
   if (loading) {
@@ -20,13 +24,21 @@ const Menu = (): JSX.Element => {
 
   const fourthMenu = (ws: ITempWhisky[]) => (
     <>
-      {ws.map((w: ITempWhisky) => (
-        <div key={w.id} className={Styles.fourthLevel}>
-          <Link href={getWhiskyPatch(w)}>
-            <a>{w.name}</a>
-          </Link>
-        </div>
-      ))}
+      {ws.map((w: ITempWhisky) => {
+        const patch = getWhiskyPatch(w);
+        return (
+          <div
+            key={w.id}
+            className={cx(Styles.fourthLevel, {
+              [Styles.active]: patch === asPath,
+            })}
+          >
+            <Link href={patch}>
+              <a>{w.name}</a>
+            </Link>
+          </div>
+        );
+      })}
     </>
   );
 
