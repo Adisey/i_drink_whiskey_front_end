@@ -10,39 +10,60 @@ import { CardInfo } from "../../components";
 import { withLayout } from "../../layout/Layout";
 import { getMenu, getPage } from "../../api";
 import { Error404 } from "../404";
+import { pageWrapper } from "../../layout/pageWrapper";
+import { getMockWhisky, whiskyGQL } from "../../api/whiskies";
+import { graphqlClient } from "../../layout/withApollo";
+import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
+import { settings } from "../../settings";
 
 interface WhiskyProps extends Record<string, unknown> {
   menu: MenuItem[];
   page: PageItem;
+  data: any;
 }
 
-const Whisky = ({ menu, page }: WhiskyProps): JSX.Element => {
-  console.log(+new Date(), "-(Whisky)->", typeof menu, `-menu->`, menu);
-  console.log(+new Date(), "-(Whisky)->", typeof page, `-page->`, page);
-  if (!menu || !page) {
-    return <Error404 />;
-  }
+const Whisky = (props: any): JSX.Element => {
+  console.log(+new Date(), "-()->", typeof props, `-props->`, props);
+  // console.log(+new Date(), "-(Whisky)->", typeof menu, `-menu->`, menu);
+  // console.log(+new Date(), "-(Whisky)->", typeof page, `-page->`, page);
+  // if (!menu || !page) {
+  //   return <Error404 />;
+  // }
 
   return (
     <div>
-      <h1>
-        {page.id} - {page.title} - {page.alias}
-      </h1>
-      <ul>
-        {menu.map((i: MenuItem) => (
-          <li key={i.id.secondCategory}>{i.id.secondCategory}</li>
-        ))}
-      </ul>
+      <h1>Hi</h1>
       <CardInfo />
     </div>
   );
 };
 
-export default withLayout(Whisky);
+// export default withLayout(Whisky);
+// export default pageWrapper(Whisky);
+export default Whisky;
+
+// export const getStaticProps = async (props: any) => {
+//   console.log(+new Date(), `--(getStaticProps)-  ->`, props);
+//   const client = graphqlClient();
+//   const { data } = await client.query({ query: whiskyGQL });
+//   console.log(+new Date(), "-(getStaticProps)->", typeof data, `-data->`, data);
+// };
+
+// export const getServerSideProps = async () => {
+//   const client = graphqlClient();
+//   const { data } = await client.query({ query: whiskyGQL });
+//   console.log(
+//     +new Date(),
+//     "-(getServerSideProps)->",
+//     typeof data,
+//     `-data->`,
+//     data
+//   );
+// };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const menu = getMenu();
-  const paths = menu.flatMap((s) => s.pages.map((p) => `/whisky/${p.alias}`));
+  const whiskys = getMockWhisky();
+  const paths = whiskys.map((w: string) => `/whisky/${w}`);
   console.log(
     +new Date(),
     "-(getStaticPaths)->",
@@ -55,6 +76,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     fallback: true,
   };
 };
+//
 
 export const getStaticProps: GetStaticProps<WhiskyProps> = async ({
   params,
@@ -67,10 +89,19 @@ export const getStaticProps: GetStaticProps<WhiskyProps> = async ({
   console.log(+new Date(), "-(getStaticProps)->", typeof id, `-id->`, id);
   const page = getPage(params.alias);
   console.log(+new Date(), "-(getStaticProps)->", typeof page, `-page->`, page);
+
+  const client = graphqlClient;
+  const { data } = await client.query({
+    query: whiskyGQL,
+    variables: { id },
+  });
+  console.log(+new Date(), "-(getStaticProps)->", typeof data, `-data->`, data);
+
   return {
     props: {
       menu,
       page,
+      data,
     },
   };
 };
