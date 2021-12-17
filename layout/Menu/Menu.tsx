@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import {
   ITempCountry,
   ITempDistillery,
@@ -6,6 +7,7 @@ import {
   ITempWhisky,
 } from "../../api/menu";
 import { withApollo, useMenu } from "../../api";
+import { getWhiskyPatch } from "../../domains/whisky";
 import cx from "classnames";
 import Styles from "./Menu.module.scss";
 
@@ -20,7 +22,9 @@ const Menu = (): JSX.Element => {
     <>
       {ws.map((w: ITempWhisky) => (
         <div key={w.id} className={Styles.fourthLevel}>
-          {w.name}
+          <Link href={getWhiskyPatch(w)}>
+            <a>{w.name}</a>
+          </Link>
         </div>
       ))}
     </>

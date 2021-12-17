@@ -1,5 +1,7 @@
 import React from "react";
 import { IWhiskyItem } from "../../api/whiskies";
+import { getWhiskyPatch } from "../../domains/whisky";
+import Link from "next/link";
 
 interface IWhiskeyListCard {
   whisky: IWhiskyItem;
@@ -10,7 +12,10 @@ export const WhiskeyListCard: React.FC<IWhiskeyListCard> = ({
 }: IWhiskeyListCard) => {
   return (
     <div>
-      {whisky.name} {whisky.age} {whisky.id}
+      <Link href={getWhiskyPatch(whisky)}>
+        <a>{whisky.name}</a>
+      </Link>
+      {whisky.age} {whisky.id}
     </div>
   );
 };

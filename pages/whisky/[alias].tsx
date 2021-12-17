@@ -16,6 +16,7 @@ import {
   whiskyGQL,
   whiskyListGQL,
 } from "../../api/whiskies";
+import { getWhiskyPatch } from "../../domains/whisky";
 import { graphqlClient } from "../../api";
 
 interface WhiskyProps extends Record<string, unknown> {
@@ -51,7 +52,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     query: whiskyListGQL,
   })) as IWhiskyListResponse;
 
-  const paths = list.map((w: IWhiskyItem) => `/whisky/${w.id}`);
+  const paths = list.map((w: IWhiskyItem) => getWhiskyPatch(w));
 
   return {
     paths,
