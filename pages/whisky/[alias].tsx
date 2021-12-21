@@ -6,16 +6,14 @@ import type {
   GetStaticPropsContext,
 } from "next";
 import { ParsedUrlQuery } from "querystring";
+// GraphQl
+import WhiskyGQL from "../../api/whisky.graphql";
+import WhiskyListGQL from "../../api/whiskyList.graphql";
 //Other
 import { CardInfo } from "../../components";
 import { withLayout } from "../../layout/Layout";
 import { Error404 } from "../404";
-import {
-  IWhiskyItem,
-  IWhiskyListResponse,
-  whiskyGQL,
-  whiskyListGQL,
-} from "../../api/whiskies";
+import { IWhiskyItem, IWhiskyListResponse } from "../../api/whiskies";
 import { getWhiskyPatch } from "../../domains/whisky";
 import { graphqlClient } from "../../api";
 
@@ -49,7 +47,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
       whiskyList: { list },
     },
   } = (await graphqlClient.query({
-    query: whiskyListGQL,
+    query: WhiskyListGQL,
   })) as IWhiskyListResponse;
 
   const paths = list.map((w: IWhiskyItem) => getWhiskyPatch(w));
@@ -70,7 +68,7 @@ export const getStaticProps: GetStaticProps<WhiskyProps> = async ({
   const id = params?.alias;
   try {
     const { data } = await graphqlClient.query({
-      query: whiskyGQL,
+      query: WhiskyGQL,
       variables: { id },
     });
     return {
