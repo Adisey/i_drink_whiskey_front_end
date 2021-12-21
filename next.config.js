@@ -2,12 +2,16 @@
 
 module.exports = {
   reactStrictMode: false,
-  webpack(config, options) {
+  webpack(config, { isServer }) {
     config.module.rules.push({
       test: /\.svg$/,
       use: ["@svgr/webpack"],
     });
-
+    config.module.rules.push({
+      test: /\.(graphql|gql)$/,
+      exclude: /node_modules/,
+      loader: "graphql-tag/loader",
+    });
     return config;
   },
 };

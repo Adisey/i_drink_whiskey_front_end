@@ -1,36 +1,10 @@
 import * as Apollo from "@apollo/client";
-import { gql } from "@apollo/client";
 
-const menuGQL = gql`
-  query {
-    pagesListTree {
-      countries {
-        id
-        name
-        description
-        regions {
-          id
-          name
-          description
-          distilleries {
-            id
-            name
-            description
-            whiskies {
-              id
-              name
-              description
-            }
-          }
-        }
-      }
-    }
-  }
-`;
+import MenuGQL from "./menu.graphql";
 
 export function useMenu() {
   const options = {};
-  return Apollo.useQuery(menuGQL, options) as IMenuResponse;
+  return Apollo.useQuery(MenuGQL, options) as IMenuResponse;
 }
 
 export type ITempCountry = {

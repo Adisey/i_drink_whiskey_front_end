@@ -1,6 +1,8 @@
 import * as Apollo from "@apollo/client";
-import { gql } from "@apollo/client";
 import { IMainGQLResponse } from "./menu";
+
+import WhiskyGQL from "./whisky.graphql";
+import WhiskyListGQL from "./whiskyList.graphql";
 
 export type IWhiskyItem = {
   id: string;
@@ -24,29 +26,9 @@ export type IWhiskyListResponse = {
   };
 } & IMainGQLResponse;
 
-export const whiskyListGQL = gql`
-  query WhiskyList {
-    whiskyList(pageSize: 10000) {
-      list {
-        id
-        name
-        description
-        countryId
-        country
-        regionId
-        region
-        age
-        distilleryId
-        distillery
-      }
-      totalCount
-    }
-  }
-`;
-
 export function useWhiskyList() {
   const options = {};
-  return Apollo.useQuery(whiskyListGQL, options) as IWhiskyListResponse;
+  return Apollo.useQuery(WhiskyListGQL, options) as IWhiskyListResponse;
 }
 
 export type IWhiskyResponse = IMainGQLResponse & {
@@ -55,24 +37,7 @@ export type IWhiskyResponse = IMainGQLResponse & {
   };
 };
 
-export const whiskyGQL = gql`
-  query GetWhisky($id: String!) {
-    getWhisky(id: $id) {
-      id
-      name
-      description
-      countryId
-      country
-      regionId
-      region
-      age
-      distilleryId
-      distillery
-    }
-  }
-`;
-
 export function useWhisky() {
   const options = {};
-  return Apollo.useQuery(whiskyGQL, options) as IWhiskyResponse;
+  return Apollo.useQuery(WhiskyGQL, options) as IWhiskyResponse;
 }
