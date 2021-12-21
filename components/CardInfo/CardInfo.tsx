@@ -1,16 +1,23 @@
+//Core
 import React from "react";
-
-import Styles from "./CardInfo.module.scss";
-
+import cx from "classnames";
+//Interfaces
+import { IDivMainProps } from "../../interfaces/div.main.props";
+// Temp
 import p1 from "./temp/332221-big.jpg";
 import p2 from "./temp/200382-big.jpg";
 import p3 from "./temp/187296-big.jpg";
 import p4 from "./temp/187295-big.jpg";
 import p5 from "./temp/187294-big.jpg";
+//Styles
+import Styles from "./CardInfo.module.scss";
 
-export const CardInfo = (): JSX.Element => {
+export const CardInfo = ({
+  className,
+  ...props
+}: IDivMainProps): JSX.Element => {
   return (
-    <div className={Styles.cardInfo}>
+    <div className={cx(className, Styles.cardInfo)} {...props}>
       <div className={Styles.title}>
         <div className={Styles.name}>Lagavulin</div>
         <div className={Styles.rating}>98</div>

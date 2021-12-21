@@ -1,0 +1,25 @@
+.main {
+	.list {
+		display: grid;
+
+		border: 1px solid blue;
+		grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+		gap: 10px;
+
+		@media (max-width: 1800px) {
+			grid-template-columns: 1fr 1fr 1fr 1fr;
+		}
+
+		@media (max-width: 1200px) {
+			grid-template-columns: 1fr 1fr 1fr;
+		}
+
+		@media (max-width: 765px) {
+			grid-template-columns: 1fr 1fr;
+		}
+
+		@media (max-width: 500px) {
+			grid-template-columns: 1fr;
+		}
+	}
+}

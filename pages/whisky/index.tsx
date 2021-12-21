@@ -12,7 +12,7 @@ const WhiskyMain = (): JSX.Element => {
   const whiskyList = data?.whiskyList?.list || [];
   return (
     <div>
-      WhiskyMain
+      <h1>WhiskyMain</h1>
       <WhiskeyList whiskyList={whiskyList} />
     </div>
   );
