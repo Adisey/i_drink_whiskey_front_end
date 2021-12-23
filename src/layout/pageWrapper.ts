@@ -1,5 +1,5 @@
 import { getDataFromTree } from "@apollo/client/react/ssr";
-import { withApollo } from "../api";
+import { withApollo } from "../api/apolloClient";
 import { withLayout } from "./Layout";
 import { FunctionComponent } from "react";
 

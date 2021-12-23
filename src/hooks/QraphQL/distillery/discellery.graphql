@@ -1,0 +1,15 @@
+query GetDiscellery($id: String!) {
+    getDistillery(id: $id) {
+        id
+        name
+        description
+        countryId
+        country
+        regionId
+        region
+        children{
+            id,
+            name
+        }
+    }
+}

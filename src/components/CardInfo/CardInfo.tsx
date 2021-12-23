@@ -2,7 +2,7 @@
 import React from "react";
 import cx from "classnames";
 //Interfaces
-import { IDivMainProps } from "../../interfaces/div.main.props";
+import { IDivMainProps } from "../../interfaces/HTML.elements/div.main.props";
 // Temp
 import p1 from "./temp/332221-big.jpg";
 import p2 from "./temp/200382-big.jpg";

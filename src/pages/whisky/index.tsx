@@ -1,7 +1,7 @@
 import React from "react";
-import { useWhiskyList } from "../../api";
 import { pageWrapper } from "../../layout/pageWrapper";
 import { WhiskeyList } from "../../components";
+import { useWhiskyList } from "../../hooks/QraphQL/whisky";
 
 const WhiskyMain = (): JSX.Element => {
   const { loading, data } = useWhiskyList();
@@ -9,11 +9,11 @@ const WhiskyMain = (): JSX.Element => {
     return <div>Loading..</div>;
   }
 
-  const whiskyList = data?.whiskyList?.list || [];
+  const distilleryList = data?.whiskyList?.list || [];
   return (
     <div>
       <h1>WhiskyMain</h1>
-      <WhiskeyList whiskyList={whiskyList} />
+      <WhiskeyList whiskyList={distilleryList} />
     </div>
   );
 };

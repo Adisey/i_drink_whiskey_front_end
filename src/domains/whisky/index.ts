@@ -1,3 +1,3 @@
-import { ITempWhisky } from "../../api/menu";
+import { IMainItem } from "../../interfaces/GraphQL.main";
 
-export const getWhiskyPatch = (w: ITempWhisky): string => `/whisky/${w.id}`;
+export const getWhiskyPatch = (w: IMainItem): string => `/whisky/${w.id}`;

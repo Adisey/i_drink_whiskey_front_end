@@ -3,8 +3,8 @@ import React from "react";
 import Link from "next/link";
 import cx from "classnames";
 //Interfaces
-import { IWhiskyItem } from "../../api/whiskies";
-import { IDivMainProps } from "../../interfaces/div.main.props";
+import { IDivMainProps } from "../../interfaces/HTML.elements/div.main.props";
+import { IWhiskyItem } from "../../interfaces/whisky";
 //Utils
 import { getWhiskyPatch } from "../../domains/whisky";
 //Styles

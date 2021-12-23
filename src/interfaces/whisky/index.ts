@@ -1,8 +1,4 @@
-import * as Apollo from "@apollo/client";
-import { IMainGQLResponse } from "./menu";
-
-import WhiskyGQL from "./whisky.graphql";
-import WhiskyListGQL from "./whiskyList.graphql";
+import { IMainGQLResponse } from "../GraphQL.main";
 
 export type IWhiskyItem = {
   id: string;
@@ -26,18 +22,8 @@ export type IWhiskyListResponse = {
   };
 } & IMainGQLResponse;
 
-export function useWhiskyList() {
-  const options = {};
-  return Apollo.useQuery(WhiskyListGQL, options) as IWhiskyListResponse;
-}
-
 export type IWhiskyResponse = IMainGQLResponse & {
   data: {
     getWhisky: IWhiskyItem;
   };
 };
-
-export function useWhisky() {
-  const options = {};
-  return Apollo.useQuery(WhiskyGQL, options) as IWhiskyResponse;
-}

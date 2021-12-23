@@ -1,15 +1,17 @@
 import React from "react";
 import Link from "next/link";
-import {
-  ITempCountry,
-  ITempDistillery,
-  ITempRegion,
-  ITempWhisky,
-} from "../../api/menu";
-import { withApollo, useMenu } from "../../api";
+import { withApollo } from "../../api/apolloClient";
 import { getWhiskyPatch } from "../../domains/whisky";
 import cx from "classnames";
 import Styles from "./Menu.module.scss";
+import {
+  IMenuCountry,
+  IMenuDistillery,
+  IMenuRegion,
+  IMenuWhisky,
+} from "interfaces/menu";
+import { useMenu } from "../../hooks/QraphQL/menu";
+import { getDistilleryPatch } from "../../domains/distillery";
 
 interface IPageProps {
   asPath: string;
@@ -22,9 +24,9 @@ const Menu = ({ asPath }: IPageProps): JSX.Element => {
     return <div>Loading..</div>;
   }
 
-  const fourthMenu = (ws: ITempWhisky[]) => (
+  const fourthMenu = (ws: IMenuWhisky[]) => (
     <>
-      {ws.map((w: ITempWhisky) => {
+      {ws.map((w: IMenuWhisky) => {
         const patch = getWhiskyPatch(w);
         return (
           <div
@@ -42,19 +44,31 @@ const Menu = ({ asPath }: IPageProps): JSX.Element => {
     </>
   );
 
-  const thirdMenu = (ds: ITempDistillery[]) => (
+  const thirdMenu = (ds: IMenuDistillery[]) => (
     <>
-      {ds.map((d: ITempDistillery) => (
-        <div key={d.id} className={Styles.thirdLevel}>
-          {d.name}
-          {d.whiskies && d.whiskies.length && fourthMenu(d.whiskies)}
-        </div>
-      ))}
+      {ds.map((d: IMenuDistillery) => {
+        const patch = getDistilleryPatch(d);
+        return (
+          <div
+            key={d.id}
+            className={cx(Styles.thirdLevel, {
+              [Styles.active]: patch === asPath,
+            })}
+          >
+            <Link href={patch}>
+              <a>
+                {d.name} {d.whiskies.length ? `- (${d.whiskies.length})` : ""}
+              </a>
+            </Link>
+            {d.whiskies && d.whiskies.length && fourthMenu(d.whiskies)}
+          </div>
+        );
+      })}
     </>
   );
-  const secondMenu = (rs: ITempRegion[]) => (
+  const secondMenu = (rs: IMenuRegion[]) => (
     <>
-      {rs.map((r: ITempRegion) => (
+      {rs.map((r: IMenuRegion) => (
         <div key={r.id} className={Styles.secondLevel}>
           {r.name}
           {r.distilleries && r.distilleries.length && thirdMenu(r.distilleries)}
@@ -63,7 +77,7 @@ const Menu = ({ asPath }: IPageProps): JSX.Element => {
     </>
   );
 
-  const MainMenu = menu.map((c: ITempCountry) => (
+  const MainMenu = menu.map((c: IMenuCountry) => (
     <div key={c.id} className={Styles.firstLevel}>
       {c.name}
       {c.regions && c.regions.length && secondMenu(c.regions)}

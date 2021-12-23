@@ -9,21 +9,35 @@
 
 			color: red;
 
+			font-weight: normal;
+
 			.thirdLevel {
 				margin-left: 12px;
 
 				color: blue;
 
+				font-weight: normal;
+
 				.fourthLevel {
 					margin-left: 12px;
 
 					color: green;
+
+					font-weight: normal;
 				}
 
 				.active {
 					font-weight: bolder;
 				}
 			}
+
+			.active {
+				font-weight: bolder;
+			}
+		}
+
+		.active {
+			font-weight: bolder;
 		}
 	}
 }

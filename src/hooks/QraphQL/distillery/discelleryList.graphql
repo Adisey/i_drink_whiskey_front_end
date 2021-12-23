@@ -1,0 +1,14 @@
+query DiscelleryList {
+    distilleriesList(pageSize: 10000) {
+        list {
+            id
+            name
+            description
+            countryId
+            country
+            regionId
+            region
+        }
+        totalCount
+    }
+}

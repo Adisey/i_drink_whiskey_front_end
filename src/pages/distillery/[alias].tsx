@@ -7,51 +7,54 @@ import type {
 } from "next";
 import { ParsedUrlQuery } from "querystring";
 //Interfaces
-import { IWhiskyItem, IWhiskyListResponse } from "../../interfaces/whisky";
-// GraphQl
-import WhiskyGQL from "hooks/QraphQL/whisky/whisky.graphql";
-import WhiskyListGQL from "hooks/QraphQL/whisky/whiskyList.graphql";
+import {
+  IDistilleryItem,
+  IDistilleryListResponse,
+} from "../../interfaces/discellery";
+//GraphQl
+import DistilleryListGQL from "../../hooks/QraphQL/distillery/discelleryList.graphql";
+import DistilleryGQL from "../../hooks/QraphQL/distillery/discellery.graphql";
 //Other
-import { CardInfo } from "../../components";
 import { withLayout } from "../../layout/Layout";
 import { Error404 } from "../404";
-import { getWhiskyPatch } from "../../domains/whisky";
 import { graphqlClient } from "../../api/apolloClient";
+import { getDistilleryPatch } from "../../domains/distillery";
+import { WhiskeyList } from "../../components";
 
-interface WhiskyProps extends Record<string, unknown> {
-  item: IWhiskyItem;
+interface DistilleryProps extends Record<string, unknown> {
+  item: IDistilleryItem;
 }
 
-const Whisky = ({ item }: WhiskyProps): JSX.Element => {
-  console.log(+new Date(), "-(Whisky)->", typeof item, `-item->`, item);
+const Distillery = ({ item }: DistilleryProps): JSX.Element => {
+  console.log(+new Date(), "-(Distillery)->", typeof item, `-item->`, item);
 
   if (!item) {
-    // ToDo: 17.12.2021 - may be go to WhiskyList
+    // ToDo: 17.12.2021 - may be go to DistilleryList
     return <Error404 />;
   }
 
   return (
     <div>
       <h1>
-        {item?.name} - {item?.age} - {item?.id}
+        {item?.name} - {item?.id}
       </h1>
-      <CardInfo />
+      <WhiskeyList whiskyList={item.children} />
     </div>
   );
 };
 
-export default withLayout(Whisky);
+export default withLayout(Distillery);
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const {
     data: {
-      whiskyList: { list },
+      distilleriesList: { list },
     },
   } = (await graphqlClient.query({
-    query: WhiskyListGQL,
-  })) as IWhiskyListResponse;
+    query: DistilleryListGQL,
+  })) as IDistilleryListResponse;
 
-  const paths = list.map((w: IWhiskyItem) => getWhiskyPatch(w));
+  const paths = list.map((d: IDistilleryItem) => getDistilleryPatch(d));
 
   return {
     paths,
@@ -60,7 +63,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 //
 
-export const getStaticProps: GetStaticProps<WhiskyProps> = async ({
+export const getStaticProps: GetStaticProps<DistilleryProps> = async ({
   params,
 }: GetStaticPropsContext<ParsedUrlQuery>) => {
   if (!params || !params.alias || typeof params.alias !== "string") {
@@ -69,12 +72,12 @@ export const getStaticProps: GetStaticProps<WhiskyProps> = async ({
   const id = params?.alias;
   try {
     const { data } = await graphqlClient.query({
-      query: WhiskyGQL,
+      query: DistilleryGQL,
       variables: { id },
     });
     return {
       props: {
-        item: data.getWhisky,
+        item: data.getDistillery,
       },
     };
   } catch (errors) {
