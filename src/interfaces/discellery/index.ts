@@ -17,5 +17,5 @@ export type IDistilleryItem = {
   country?: string;
   regionId?: string;
   region?: string;
-  children?: IMainItem;
+  children?: IMainItem[];
 };

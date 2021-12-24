@@ -26,8 +26,6 @@ interface DistilleryProps extends Record<string, unknown> {
 }
 
 const Distillery = ({ item }: DistilleryProps): JSX.Element => {
-  console.log(+new Date(), "-(Distillery)->", typeof item, `-item->`, item);
-
   if (!item) {
     // ToDo: 17.12.2021 - may be go to DistilleryList
     return <Error404 />;
@@ -38,7 +36,7 @@ const Distillery = ({ item }: DistilleryProps): JSX.Element => {
       <h1>
         {item?.name} - {item?.id}
       </h1>
-      <WhiskeyList whiskyList={item.children} />
+      <WhiskeyList whiskyList={item?.children} />
     </div>
   );
 };
@@ -61,7 +59,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
     fallback: true,
   };
 };
-//
 
 export const getStaticProps: GetStaticProps<DistilleryProps> = async ({
   params,

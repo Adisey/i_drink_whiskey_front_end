@@ -9,7 +9,9 @@
     "start": "next start",
     "lint": "next lint",
     "stylelint": "stylelint \"**/*.css\" --fix",
-    "download-schema": "apollo client:download-schema"
+    "download-schema": "apollo client:download-schema",
+    "codegen-types": "apollo codegen:generate --target=typescript --tagName=gql",
+    "updateQraphQLTypes": "yarn download-schema && yarn codegen-types"
   },
   "dependencies": {
     "@apollo/client": "^3.5.6",
