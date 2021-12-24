@@ -11,7 +11,8 @@
     "stylelint": "stylelint \"**/*.css\" --fix",
     "download-schema": "apollo client:download-schema",
     "codegen-types": "apollo codegen:generate --target=typescript --tagName=gql",
-    "updateQraphQLTypes": "yarn download-schema && yarn codegen-types"
+    "updateQraphQLTypes": "yarn download-schema && yarn codegen-types",
+    "addQraphQLTypesToGit": "git add **/__generated__/*.ts"
   },
   "dependencies": {
     "@apollo/client": "^3.5.6",
