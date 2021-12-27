@@ -7,13 +7,11 @@ import type {
 } from "next";
 import { ParsedUrlQuery } from "querystring";
 //Interfaces
-import {
-  IDistilleryItem,
-  IDistilleryListResponse,
-} from "../../interfaces/discellery";
+import { IDistilleryListResponse } from "../../hooks/QraphQL/distillery/types";
+import { GetDistillery_getDistillery } from "../../hooks/QraphQL/distillery/__generated__/GetDistillery";
 //GraphQl
-import DistilleryListGQL from "../../hooks/QraphQL/distillery/discelleryList.graphql";
-import DistilleryGQL from "../../hooks/QraphQL/distillery/discellery.graphql";
+import DistilleryListGQL from "../../hooks/QraphQL/distillery/distilleryList.graphql";
+import DistilleryGQL from "../../hooks/QraphQL/distillery/distillery.graphql";
 //Other
 import { withLayout } from "../../layout/Layout";
 import { Error404 } from "../404";
@@ -22,7 +20,7 @@ import { getDistilleryPatch } from "../../domains/distillery";
 import { WhiskeyList } from "../../components";
 
 interface DistilleryProps extends Record<string, unknown> {
-  item: IDistilleryItem;
+  item: GetDistillery_getDistillery;
 }
 
 const Distillery = ({ item }: DistilleryProps): JSX.Element => {
@@ -52,7 +50,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
     query: DistilleryListGQL,
   })) as IDistilleryListResponse;
 
-  const paths = list.map((d: IDistilleryItem) => getDistilleryPatch(d));
+  const paths = list.map((d: GetDistillery_getDistillery) =>
+    getDistilleryPatch(d)
+  );
 
   return {
     paths,

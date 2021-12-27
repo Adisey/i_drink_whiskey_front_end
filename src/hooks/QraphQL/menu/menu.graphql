@@ -1,4 +1,4 @@
-query pagesListTree {
+query PagesListTree {
     pagesListTree {
         countries {
             id

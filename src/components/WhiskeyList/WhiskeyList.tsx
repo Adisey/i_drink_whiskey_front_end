@@ -3,14 +3,14 @@ import React from "react";
 import cx from "classnames";
 //Interfaces
 import { IDivMainProps } from "../../interfaces/HTML.elements/div.main.props";
-import { IMainItem } from "../../interfaces/GraphQL.main";
+import { GetDistillery_getDistillery_children } from "../../hooks/QraphQL/distillery/__generated__/GetDistillery";
 //Components
 import { WhiskeyListCard } from "./WhiskeyListCard";
 //Styles
 import Styles from "./WhiskeyList.module.scss";
 
 interface IWhiskeyList extends IDivMainProps {
-  whiskyList?: IMainItem[];
+  whiskyList?: GetDistillery_getDistillery_children[];
 }
 
 export const WhiskeyList: React.FC<IWhiskeyList> = ({
@@ -22,7 +22,7 @@ export const WhiskeyList: React.FC<IWhiskeyList> = ({
     <div className={cx(className, Styles.main)} {...props}>
       <h2>WhiskeyList</h2>
       <div className={cx(Styles.list)}>
-        {whiskyList?.map((w: IMainItem) => (
+        {whiskyList?.map((w: GetDistillery_getDistillery_children) => (
           <WhiskeyListCard key={w.id} whisky={w} />
         ))}
       </div>

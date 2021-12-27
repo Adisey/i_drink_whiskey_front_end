@@ -5,14 +5,14 @@ import WhiskyListGQL from "../../../hooks/QraphQL/whisky/whiskyList.graphql";
 import {
   IWhiskyListResponse,
   IWhiskyResponse,
-} from "../../../interfaces/whisky";
+} from "hooks/QraphQL/whisky/types";
 
-export function useWhiskyList() {
+export function useWhiskyList(): IWhiskyListResponse {
   const options = {};
-  return Apollo.useQuery(WhiskyListGQL, options) as IWhiskyListResponse;
+  return Apollo.useQuery(WhiskyListGQL, options);
 }
 
-export function useWhisky() {
+export function useWhisky(): IWhiskyResponse {
   const options = {};
-  return Apollo.useQuery(WhiskyGQL, options) as IWhiskyResponse;
+  return Apollo.useQuery(WhiskyGQL, options);
 }

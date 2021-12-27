@@ -9,8 +9,8 @@
 
 export interface WhiskyList_whiskyList_list {
   __typename: "WhiskyGraphQLModel";
-  id: string | null;
-  name: string;
+  id: string;
+  name: string | null;
   description: string | null;
   countryId: string | null;
   country: string | null;

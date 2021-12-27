@@ -4,31 +4,31 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: GetDiscellery
+// GraphQL query operation: GetDistillery
 // ====================================================
 
-export interface GetDiscellery_getDistillery_children {
+export interface GetDistillery_getDistillery_children {
   __typename: "MainGraphQLModel";
-  id: string | null;
-  name: string;
+  id: string;
+  name: string | null;
 }
 
-export interface GetDiscellery_getDistillery {
+export interface GetDistillery_getDistillery {
   __typename: "DistilleryChildrenGraphQLModel";
-  id: string | null;
-  name: string;
+  id: string;
+  name: string | null;
   description: string | null;
   countryId: string | null;
   country: string | null;
   regionId: string | null;
   region: string | null;
-  children: GetDiscellery_getDistillery_children[];
+  children: GetDistillery_getDistillery_children[];
 }
 
-export interface GetDiscellery {
-  getDistillery: GetDiscellery_getDistillery;
+export interface GetDistillery {
+  getDistillery: GetDistillery_getDistillery;
 }
 
-export interface GetDiscelleryVariables {
+export interface GetDistilleryVariables {
   id: string;
 }

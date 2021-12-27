@@ -1,4 +1,4 @@
-query GetDiscellery($id: String!) {
+query GetDistillery($id: String!) {
     getDistillery(id: $id) {
         id
         name

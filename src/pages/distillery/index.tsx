@@ -11,6 +11,7 @@ const DistilleryMain = (): JSX.Element => {
     return <div>Loading..</div>;
   }
   const distilleryList = data?.distilleriesList?.list || [];
+
   return (
     <div>
       <h1>Distillery Main</h1>

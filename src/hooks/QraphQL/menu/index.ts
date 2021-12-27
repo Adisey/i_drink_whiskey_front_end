@@ -1,8 +1,8 @@
 import * as Apollo from "@apollo/client";
-import MenuGQL from "hooks/QraphQL/menu/menu.graphql";
-import { IMenuResponse } from "../../../interfaces/menu";
+import MenuGQL from "./menu.graphql";
+import { IMenuResponse } from "./types";
 
-export function useMenu() {
+export function useMenu(): IMenuResponse {
   const options = {};
-  return Apollo.useQuery(MenuGQL, options) as IMenuResponse;
+  return Apollo.useQuery(MenuGQL, options);
 }

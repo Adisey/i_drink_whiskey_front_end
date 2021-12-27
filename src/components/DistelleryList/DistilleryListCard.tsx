@@ -4,14 +4,14 @@ import Link from "next/link";
 import cx from "classnames";
 //Interfaces
 import { IDivMainProps } from "../../interfaces/HTML.elements/div.main.props";
-import { IDistilleryItem } from "../../interfaces/discellery";
+import { GetDistillery_getDistillery } from "../../hooks/QraphQL/distillery/__generated__/GetDistillery";
 //Utils
 import { getDistilleryPatch } from "../../domains/distillery";
 //Styles
 import Styles from "./DistilleryListCard.module.scss";
 
 interface IWhiskeyListCard extends IDivMainProps {
-  distillery: IDistilleryItem;
+  distillery: GetDistillery_getDistillery;
 }
 
 export const DistilleryListCard: React.FC<IWhiskeyListCard> = ({

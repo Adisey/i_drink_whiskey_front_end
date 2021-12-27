@@ -7,10 +7,12 @@ import type {
 } from "next";
 import { ParsedUrlQuery } from "querystring";
 //Interfaces
-import { IWhiskyItem, IWhiskyListResponse } from "../../interfaces/whisky";
+import { IWhiskyListResponse } from "../../hooks/QraphQL/whisky/types";
+import { GetWhisky_getWhisky } from "../../hooks/QraphQL/whisky/__generated__/GetWhisky";
+import { WhiskyList_whiskyList_list } from "../../hooks/QraphQL/whisky/__generated__/WhiskyList";
 // GraphQl
-import WhiskyGQL from "hooks/QraphQL/whisky/whisky.graphql";
-import WhiskyListGQL from "hooks/QraphQL/whisky/whiskyList.graphql";
+import WhiskyGQL from "../../hooks/QraphQL/whisky/whisky.graphql";
+import WhiskyListGQL from "../../hooks/QraphQL/whisky/whiskyList.graphql";
 //Other
 import { CardInfo } from "../../components";
 import { withLayout } from "../../layout/Layout";
@@ -19,7 +21,7 @@ import { getWhiskyPatch } from "../../domains/whisky";
 import { graphqlClient } from "../../api/apolloClient";
 
 interface WhiskyProps extends Record<string, unknown> {
-  item: IWhiskyItem;
+  item: GetWhisky_getWhisky;
 }
 
 const Whisky = ({ item }: WhiskyProps): JSX.Element => {
@@ -51,7 +53,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     query: WhiskyListGQL,
   })) as IWhiskyListResponse;
 
-  const paths = list.map((w: IWhiskyItem) => getWhiskyPatch(w));
+  const paths = list.map((w: WhiskyList_whiskyList_list) => getWhiskyPatch(w));
 
   return {
     paths,

@@ -1,4 +1,4 @@
-query DiscelleryList {
+query DistilleriesList {
     distilleriesList(pageSize: 10000) {
         list {
             id

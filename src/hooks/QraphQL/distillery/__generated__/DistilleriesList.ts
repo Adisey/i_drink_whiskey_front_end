@@ -4,13 +4,13 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: DiscelleryList
+// GraphQL query operation: DistilleriesList
 // ====================================================
 
-export interface DiscelleryList_distilleriesList_list {
+export interface DistilleriesList_distilleriesList_list {
   __typename: "DistilleryGraphQLModel";
-  id: string | null;
-  name: string;
+  id: string;
+  name: string | null;
   description: string | null;
   countryId: string | null;
   country: string | null;
@@ -18,12 +18,12 @@ export interface DiscelleryList_distilleriesList_list {
   region: string | null;
 }
 
-export interface DiscelleryList_distilleriesList {
+export interface DistilleriesList_distilleriesList {
   __typename: "DistilleriesGraphQLListModel";
-  list: DiscelleryList_distilleriesList_list[];
+  list: DistilleriesList_distilleriesList_list[];
   totalCount: number;
 }
 
-export interface DiscelleryList {
-  distilleriesList: DiscelleryList_distilleriesList;
+export interface DistilleriesList {
+  distilleriesList: DistilleriesList_distilleriesList;
 }

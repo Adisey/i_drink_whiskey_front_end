@@ -5,5 +5,5 @@ export type IMainGQLResponse = {
 
 export type IMainItem = {
   id: string;
-  name: string;
+  name: string | null;
 };
