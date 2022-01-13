@@ -1,0 +1,46 @@
+.main {
+	display: grid;
+
+	width: 100vw;
+	height: 100vh;
+
+	border: 1px solid blue;
+	grid-template-columns: 1fr;
+
+	.box {
+		display: grid;
+		align-self: center;
+
+		min-width: 150px;
+
+		max-width: 300px;
+
+		border: 1px solid red;
+		grid-template-columns: 1fr;
+		justify-self: center;
+
+		.title {
+			display: grid;
+
+			width: 100%;
+
+			border-bottom: 1px solid var(--primary);
+			background-color: var(--gray);
+			grid-template-columns: 1fr;
+
+			h1 {
+				justify-self: center;
+
+				align-self: center;
+
+				margin: 0;
+
+				color: var(--primary);
+			}
+		}
+
+		.form {
+			border: 1px solid green;
+		}
+	}
+}

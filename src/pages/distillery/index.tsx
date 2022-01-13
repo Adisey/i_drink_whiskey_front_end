@@ -3,7 +3,7 @@ import React from "react";
 
 import { pageWrapper } from "../../layout/pageWrapper";
 import { useDistilleryList } from "../../hooks/QraphQL/distillery";
-import { DistilleryList } from "../../components/DistelleryList/DistilleryList";
+import { DistilleryList } from "../../components";
 
 const DistilleryMain = (): JSX.Element => {
   const { loading, data } = useDistilleryList();
