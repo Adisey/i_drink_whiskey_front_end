@@ -1,35 +1,71 @@
 .inputWrapper {
-	position: relative;
+	display: grid;
 
-	.input {
-		padding: 7px 15px;
+	padding-bottom: 10px;
 
-		color: var(--black);
-		border: none;
-		border-radius: 5px;
-		outline-color: var(--primary);
-		background: var(--white);
-		box-shadow: 0 4px 4px rgb(0 0 0 / 5%);
+	.label {
+		align-self: center;
 
-		font-family: var(--font-family);
+		margin-bottom: 5px;
 
-		font-size: 16px;
-		line-height: 22px;
+		justify-self: start;
+	}
 
-		&::placeholder {
-			color: var(--gray);
+	.labelNone {
+		display: none;
+	}
+
+	.labelLeft {
+		padding-bottom: 15px;
+	}
+
+	.inputField {
+		position: relative;
+
+		padding-bottom: 15px;
+
+		.input {
+			padding: 7px 15px;
+
+			color: var(--black);
+			border: 1px solid var(--gray-dark);
+
+			border-radius: 5px;
+			outline-color: var(--primary);
+			background: var(--white);
+			box-shadow: 0 4px 4px rgb(0 0 0 / 5%);
+
+			font-family: var(--font-family);
+
+			font-size: 16px;
+			line-height: 22px;
+
+			&::placeholder {
+				color: var(--gray);
+			}
+		}
+
+		.error {
+			border: 1px solid var(--red);
+		}
+
+		.errorMessage {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+
+			color: var(--red);
+
+			font-size: 75%;
 		}
 	}
+}
 
-	.error {
-		border: 1px solid var(--red);
-	}
+.left {
+	grid-template-columns: 1fr 1fr;
+	gap: 10px;
+}
 
-	.errorMessage {
-		position: absolute;
-		bottom: -20px;
-		left: 0;
-
-		color: var(--red);
-	}
+.top {
+	grid-template-columns: 1fr;
 }

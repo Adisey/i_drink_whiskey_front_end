@@ -8,7 +8,7 @@ import {
 import cn from "classnames";
 import { FieldError } from "react-hook-form";
 //Style
-import styles from "components/Input/Input.module.scss";
+import Styles from "components/Input/Input.module.scss";
 
 export interface InputProps
   extends DetailedHTMLProps<
@@ -16,23 +16,42 @@ export interface InputProps
     HTMLInputElement
   > {
   error?: FieldError;
+  label?: string;
+  labelPosition?: "top" | "left" | "none";
 }
 
 export const Input = forwardRef(
   (
-    { className, error, ...props }: InputProps,
+    { className, error, label, labelPosition, ...props }: InputProps,
     ref: ForwardedRef<HTMLInputElement>
   ): JSX.Element => {
     return (
-      <div className={cn(className, styles.inputWrapper)}>
-        <input
-          className={cn(styles.input, {
-            [styles.error]: error,
+      <div
+        className={cn(className, Styles.inputWrapper, {
+          [Styles.top]: labelPosition === "top",
+          [Styles.left]: labelPosition === "left",
+        })}
+      >
+        <div
+          className={cn(Styles.label, {
+            [Styles.labelNone]: labelPosition === "none",
+            [Styles.labelLeft]: labelPosition === "left",
           })}
-          ref={ref}
-          {...props}
-        />
-        {error && <span className={styles.errorMessage}>{error.message}</span>}
+        >
+          {label}
+        </div>
+        <div className={Styles.inputField}>
+          <input
+            className={cn(Styles.input, {
+              [Styles.error]: error,
+            })}
+            ref={ref}
+            {...props}
+          />
+          {error && (
+            <span className={Styles.errorMessage}>{error.message}</span>
+          )}
+        </div>
       </div>
     );
   }

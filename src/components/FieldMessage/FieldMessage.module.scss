@@ -1,0 +1,50 @@
+.main {
+	position: relative;
+
+	padding: 10px;
+
+	transition: all 0.2s;
+
+	border: 0 solid var(--white);
+
+	border-radius: 5px;
+
+	.closeIcon {
+		position: absolute;
+		top: 5px;
+		right: 5px;
+
+		cursor: pointer;
+	}
+}
+
+.hide {
+	height: 0;
+	padding: 0;
+
+	color: var(--white);
+}
+
+.error {
+	height: 100%;
+
+	color: var(--red);
+	border: 1px solid var(--red);
+	background: var(--red-light);
+
+	.closeIcon path {
+		stroke: var(--red);
+	}
+}
+
+.info {
+	height: 100%;
+
+	color: var(--green);
+	border: 1px solid var(--green);
+	background: var(--green-light);
+
+	.closeIcon path {
+		stroke: var(--green);
+	}
+}
