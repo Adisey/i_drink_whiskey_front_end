@@ -31,14 +31,15 @@ export const LoginForm: React.FC<ILoginForm> = ({ className, ...props }) => {
   };
 
   const onSubmit = async (formData: LoginAPIVariables) => {
-    console.log(+new Date(), "-()->", typeof formData, `-formData->`, formData);
     try {
       const data = await loginGQL(formData);
-      console.log(+new Date(), "-(FORM)->", typeof data, `-data->`, data);
       const { access_token } = data.login;
       if (access_token) {
-        await saveToken({ access: access_token });
-        Router.push("/");
+        if (await saveToken({ access: access_token })) {
+          Router.push("/");
+        } else {
+          badLogin();
+        }
       } else {
         badLogin();
       }

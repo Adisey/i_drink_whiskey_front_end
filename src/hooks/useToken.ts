@@ -1,7 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const localStorageKeys = {
   access: "access",
+};
+
+type IDataToken = {
+  email?: string;
+  exp?: number;
 };
 
 type ITokens = {
@@ -9,27 +14,33 @@ type ITokens = {
 };
 type IUseToken = {
   tokens: ITokens;
-  saveToken(tokens: ITokens): Promise<void>;
-  getToken(): Promise<boolean>;
+  user?: string;
   cleanToken(): Promise<void>;
+  getToken(): Promise<boolean>;
+  saveToken(tokens: ITokens): Promise<boolean>;
 };
 
 export function useToken(): IUseToken {
   const [tokens, setTokens] = useState<ITokens>({});
-  const saveToken = async (tokens: ITokens): Promise<void> => {
-    setTokens(tokens);
-    if (tokens.access) {
-      await localStorage.setItem(localStorageKeys.access, tokens.access);
-    }
-  };
+  const [user, setUser] = useState<string>();
 
   const cleanToken = async (): Promise<void> => {
     setTokens({});
+    setUser(undefined);
     await localStorage.removeItem(localStorageKeys.access);
   };
 
-  const isValidToken = (tokens: string): boolean => {
-    return true;
+  const getDataToken = (token: string): IDataToken => {
+    return JSON.parse(atob(token.split(".")[1]));
+  };
+
+  const isValidToken = (token: string): boolean => {
+    try {
+      const { email, exp } = getDataToken(token);
+      return !!email && !!exp && +new Date(exp * 1000) > +new Date();
+    } catch {
+      return false;
+    }
   };
 
   const getToken = async (): Promise<boolean> => {
@@ -37,12 +48,31 @@ export function useToken(): IUseToken {
     if (!access) {
       return false;
     } else if (isValidToken(access)) {
-      return false;
+      await setTokens({ access });
+      return true;
     } else {
-      setTokens({ access });
+      await cleanToken();
       return true;
     }
   };
 
-  return { tokens, saveToken, getToken, cleanToken };
+  const saveToken = async (tokens: ITokens): Promise<boolean> => {
+    if (tokens.access && isValidToken(tokens.access)) {
+      setTokens(tokens);
+      await localStorage.setItem(localStorageKeys.access, tokens.access);
+      return true;
+    } else {
+      await cleanToken();
+      return false;
+    }
+  };
+
+  useEffect(() => {
+    if (tokens.access && isValidToken(tokens.access)) {
+      const { email } = getDataToken(tokens.access);
+      setUser(email);
+    }
+  }, [tokens.access]);
+
+  return { tokens, user, cleanToken, getToken, saveToken };
 }
