@@ -10,8 +10,6 @@ import { Button } from "components";
 export const UserInfo: React.FC = () => {
   const { user, getToken, cleanToken } = useToken();
 
-  console.log(+new Date(), "-(Menu)->", typeof user, `-user->`, user);
-
   useEffect(() => {
     getToken();
   }, []);

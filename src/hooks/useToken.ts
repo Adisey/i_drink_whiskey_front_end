@@ -74,5 +74,20 @@ export function useToken(): IUseToken {
     }
   }, [tokens.access]);
 
+  const checkValidToken = () => {
+    if (tokens?.access) {
+      if (!isValidToken(tokens.access)) {
+        cleanToken();
+      }
+    }
+  };
+
+  useEffect(() => {
+    const idInterval = setInterval(() => {
+      checkValidToken();
+    }, 1000 * 60);
+    return () => clearInterval(idInterval);
+  }, []);
+
   return { tokens, user, cleanToken, getToken, saveToken };
 }
