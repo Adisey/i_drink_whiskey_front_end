@@ -11,11 +11,11 @@ export interface ButtonProps
     HTMLButtonElement
   > {
   children: ReactNode;
-  appearance: "primary" | "ghost";
+  appearance?: "primary" | "ghost";
 }
 
 export const Button = ({
-  appearance,
+  appearance = "ghost",
   children,
   className,
   ...props

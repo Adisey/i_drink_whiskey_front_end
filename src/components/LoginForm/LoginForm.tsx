@@ -72,6 +72,7 @@ export const LoginForm: React.FC<ILoginForm> = ({ className, ...props }) => {
               })}
               placeholder="Password"
               error={errors.password}
+              type={"password"}
               label={"Password"}
             />
             <FieldMessage

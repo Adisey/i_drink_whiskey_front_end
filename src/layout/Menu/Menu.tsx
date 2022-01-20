@@ -14,7 +14,7 @@ import { useMenu } from "../../hooks/QraphQL/menu";
 import { getDistilleryPatch } from "../../domains/distillery";
 import { withApollo } from "../../api/apolloClient";
 import { getWhiskyPatch } from "../../domains/whisky";
-import { useToken } from "../../hooks/useToken";
+
 //Styles
 import Styles from "./Menu.module.scss";
 
@@ -24,13 +24,6 @@ interface IPageProps {
 
 const Menu = ({ asPath }: IPageProps): JSX.Element => {
   const { loading, data } = useMenu();
-  const { user, getToken } = useToken();
-
-  console.log(+new Date(), "-(Menu)->", typeof user, `-user->`, user);
-
-  useEffect(() => {
-    getToken();
-  }, []);
 
   const menu = data?.pagesListTree.countries;
   if (loading) {
