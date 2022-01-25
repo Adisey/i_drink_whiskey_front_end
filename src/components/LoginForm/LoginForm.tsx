@@ -4,11 +4,11 @@ import Router from "next/router";
 import { useForm } from "react-hook-form";
 import cx from "classnames";
 //Other
-import { IDivMainProps } from "interfaces/HTML.elements/div.main.props";
-import { loginGQL } from "hooks/QraphQL/login";
-import { LoginAPIVariables } from "hooks/QraphQL/login/__generated__/LoginAPI";
+import { IDivMainProps } from "../../interfaces/HTML.elements/div.main.props";
+import { loginGQL } from "../../hooks/QraphQL/login";
+import { LoginAPIVariables } from "../../hooks/QraphQL/login/__generated__/LoginAPI";
 import { Input, Button, FieldMessage } from "../";
-import { useToken } from "../../hooks/useToken";
+import { useAuthApolloProvider } from "../../apolloClient/AuthContext";
 //Styles
 import Styles from "./LoginForm.module.scss";
 
@@ -24,7 +24,7 @@ export const LoginForm: React.FC<ILoginForm> = ({ className, ...props }) => {
     reset,
   } = useForm<LoginAPIVariables>();
   const [error, setError] = useState<string>();
-  const { saveToken } = useToken();
+  const { saveToken } = useAuthApolloProvider();
 
   const badLogin = () => {
     setError("Bad Login.");

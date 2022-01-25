@@ -1,7 +1,7 @@
 //Core
-import React, { useEffect } from "react";
+import React from "react";
 import Link from "next/link";
-import cx from "classnames";
+import { useRouter } from "next/router";
 //Interfaces
 import {
   PagesListTree_pagesListTree_countries_regions_distilleries_whiskies,
@@ -12,18 +12,15 @@ import {
 //Other
 import { useMenu } from "../../hooks/QraphQL/menu";
 import { getDistilleryPatch } from "../../domains/distillery";
-import { withApollo } from "../../api/apolloClient";
 import { getWhiskyPatch } from "../../domains/whisky";
 
 //Styles
+import cx from "classnames";
 import Styles from "./Menu.module.scss";
 
-interface IPageProps {
-  asPath: string;
-}
-
-const Menu = ({ asPath }: IPageProps): JSX.Element => {
+export const Menu = (): JSX.Element => {
   const { loading, data } = useMenu();
+  const { asPath } = useRouter();
 
   const menu = data?.pagesListTree.countries;
   if (loading) {
@@ -106,5 +103,3 @@ const Menu = ({ asPath }: IPageProps): JSX.Element => {
     </nav>
   );
 };
-
-export const MainMenu = withApollo(Menu);

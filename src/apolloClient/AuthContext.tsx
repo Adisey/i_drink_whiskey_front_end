@@ -1,4 +1,20 @@
-import { useEffect, useState } from "react";
+//Core
+import React, {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
+import {
+  ApolloClient,
+  ApolloProvider,
+  HttpLink,
+  InMemoryCache,
+  NormalizedCacheObject,
+} from "@apollo/client";
+//Settings
+import { settings } from "settings";
 
 const localStorageKeys = {
   access: "access",
@@ -12,15 +28,38 @@ type IDataToken = {
 type ITokens = {
   access?: string;
 };
-type IUseToken = {
-  tokens: ITokens;
+
+type IAuthApolloContextType = {
+  tokens?: ITokens;
   user?: string;
   cleanToken(): Promise<void>;
   getToken(): Promise<boolean>;
   saveToken(tokens: ITokens): Promise<boolean>;
+  apolloClient: ApolloClient<NormalizedCacheObject>;
 };
 
-export function useToken(): IUseToken {
+const authApolloContextDefaultValues: IAuthApolloContextType = {
+  tokens: {},
+  user: "",
+  cleanToken: async (): Promise<void> => await Promise.resolve(),
+  getToken: async (): Promise<boolean> => true,
+  saveToken: async (): Promise<boolean> => true,
+  apolloClient: new ApolloClient({ cache: new InMemoryCache() }),
+};
+
+const AuthApolloContext = createContext<IAuthApolloContextType>(
+  authApolloContextDefaultValues
+);
+
+export function useAuthApolloProvider() {
+  return useContext(AuthApolloContext);
+}
+
+type Props = {
+  children: ReactNode;
+};
+
+export function AuthApolloProvider({ children }: Props) {
   const [tokens, setTokens] = useState<ITokens>({});
   const [user, setUser] = useState<string>();
 
@@ -89,5 +128,45 @@ export function useToken(): IUseToken {
     return () => clearInterval(idInterval);
   }, []);
 
-  return { tokens, user, cleanToken, getToken, saveToken };
+  const getAuthHeaders = () => {
+    if (user && tokens?.access) {
+      return {
+        authorization: `Bearer ${tokens.access}`,
+      };
+    } else return null;
+  };
+
+  const createApolloClient = () => {
+    const link = new HttpLink({
+      uri: `http://${settings.backendHost}/graphql`,
+      headers: getAuthHeaders(),
+    });
+
+    return new ApolloClient({
+      cache: new InMemoryCache(),
+      link,
+    });
+  };
+
+  const apolloClient: ApolloClient<NormalizedCacheObject> =
+    createApolloClient();
+
+  useEffect(() => {
+    getToken();
+  }, []);
+
+  const value: IAuthApolloContextType = {
+    tokens,
+    user,
+    cleanToken,
+    apolloClient: apolloClient,
+    getToken,
+    saveToken,
+  };
+
+  return (
+    <AuthApolloContext.Provider value={value}>
+      <ApolloProvider client={apolloClient}>{children}</ApolloProvider>
+    </AuthApolloContext.Provider>
+  );
 }

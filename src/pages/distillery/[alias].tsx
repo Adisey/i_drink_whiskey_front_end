@@ -15,7 +15,7 @@ import DistilleryGQL from "../../hooks/QraphQL/distillery/distillery.graphql";
 //Other
 import { withLayout } from "../../layout/Layout";
 import { Error404 } from "../404";
-import { graphqlClient } from "../../api/apolloClient";
+import { staticApolloClient } from "../../apolloClient";
 import { getDistilleryPatch } from "../../domains/distillery";
 import { WhiskeyList } from "../../components";
 
@@ -46,7 +46,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     data: {
       distilleriesList: { list },
     },
-  } = (await graphqlClient.query({
+  } = (await staticApolloClient.query({
     query: DistilleryListGQL,
   })) as IDistilleryListResponse;
 
@@ -68,7 +68,7 @@ export const getStaticProps: GetStaticProps<DistilleryProps> = async ({
   }
   const id = params?.alias;
   try {
-    const { data } = await graphqlClient.query({
+    const { data } = await staticApolloClient.query({
       query: DistilleryGQL,
       variables: { id },
     });

@@ -1,9 +1,17 @@
-import "../styles/globals.css";
-import type { AppProps } from "next/app";
+//Core
 import React from "react";
+import type { AppProps } from "next/app";
+//Other
+import { AuthApolloProvider } from "../apolloClient/AuthContext";
+//Styles
+import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
-  return <Component {...pageProps} />;
+  return (
+    <AuthApolloProvider>
+      <Component {...pageProps} />
+    </AuthApolloProvider>
+  );
 }
 
 export default MyApp;

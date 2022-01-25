@@ -18,7 +18,7 @@ import { CardInfo } from "../../components";
 import { withLayout } from "../../layout/Layout";
 import { Error404 } from "../404";
 import { getWhiskyPatch } from "../../domains/whisky";
-import { graphqlClient } from "../../api/apolloClient";
+import { staticApolloClient } from "../../apolloClient";
 
 interface WhiskyProps extends Record<string, unknown> {
   item: GetWhisky_getWhisky;
@@ -49,7 +49,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     data: {
       whiskyList: { list },
     },
-  } = (await graphqlClient.query({
+  } = (await staticApolloClient.query({
     query: WhiskyListGQL,
   })) as IWhiskyListResponse;
 
@@ -70,7 +70,7 @@ export const getStaticProps: GetStaticProps<WhiskyProps> = async ({
   }
   const id = params?.alias;
   try {
-    const { data } = await graphqlClient.query({
+    const { data } = await staticApolloClient.query({
       query: WhiskyGQL,
       variables: { id },
     });

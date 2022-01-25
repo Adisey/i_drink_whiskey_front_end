@@ -1,18 +1,14 @@
 //Core
-import React, { useEffect } from "react";
+import React from "react";
 import Router from "next/router";
 //Other
-import { useToken } from "hooks/useToken";
+import { Button } from "../";
+import { useAuthApolloProvider } from "../../apolloClient/AuthContext";
 //Styles
 import Styles from "./UserInfo.module.scss";
-import { Button } from "components";
 
 export const UserInfo: React.FC = () => {
-  const { user, getToken, cleanToken } = useToken();
-
-  useEffect(() => {
-    getToken();
-  }, []);
+  const { user, cleanToken } = useAuthApolloProvider();
 
   const goLogin = () => {
     Router.push("/login");
