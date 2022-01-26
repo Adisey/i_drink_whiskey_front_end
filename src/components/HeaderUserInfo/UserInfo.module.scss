@@ -1,5 +1,15 @@
+.loading {
+	color: var(--green);
+}
+
 .main {
-	.userName {
-		color: var(--red);
+	.userInfo {
+		.userName {
+			color: var(--green);
+		}
+
+		.userRole {
+			color: var(--red);
+		}
 	}
 }

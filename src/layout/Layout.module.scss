@@ -13,9 +13,6 @@
 		grid-area: header;
 
 		//display: none;
-
-		border: 1px solid green;
-
 		//@media (max-width: 765px) {
 		//	display: block;
 		//}
@@ -24,7 +21,7 @@
 	.sidebar {
 		grid-area: sidebar;
 
-		border: 1px solid blue;
+		border-right: 2px solid var(--gray-dark);
 
 		@media (max-width: 765px) {
 			display: none;
@@ -34,13 +31,12 @@
 	.body {
 		grid-area: body;
 
-		border: 1px solid mediumvioletred;
 	}
 
 	.footer {
 		grid-area: footer;
 
-		border: 1px solid red;
+		border-top: 2px solid var(--gray-dark);
 	}
 
 	@media (max-width: 765px) {

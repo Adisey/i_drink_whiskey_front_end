@@ -17,7 +17,7 @@ export const Header: React.FC<IDivMainProps> = ({
       <div className={Styles.logoPlace}>Logo</div>
       <div className={Styles.rightPlace}>
         <HeaderUserInfo className={Styles.userInfo} />
-        <div className={Styles.mobileMenu}>MobileMenu</div>
+        <div className={Styles.mobileMenu}>Mobile Menu</div>
       </div>
     </div>
   );

@@ -4,13 +4,16 @@
 	grid-template-columns: 1fr 1fr auto;
 	column-gap: 10px;
 
+	padding: 10px;
+
+	border-bottom: 2px solid var(--gray-dark);
+
 	.logoPlace {
 		grid-template-columns: minmax(150px, 1fr);
 
 		display: grid;
 		align-items: center;
 
-		border: 1px solid red;
 		grid-area: logo;
 	}
 
@@ -18,7 +21,6 @@
 		display: grid;
 		align-items: center;
 
-		border: 1px solid darkviolet;
 		grid-area: title;
 
 		@media (max-width: 765px) {
@@ -34,7 +36,6 @@
 
 		padding-right: 10px;
 
-		border: 1px solid green;
 		grid-template-columns: minmax(1fr, 200px);
 		grid-area: right;
 		grid-template-areas: "userInfo";
