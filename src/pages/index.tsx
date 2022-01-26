@@ -1,14 +1,8 @@
 import React from "react";
 import { pageWrapper } from "../layout/pageWrapper";
-import { UserInfo } from "components";
 
 const Home = (): JSX.Element => {
-  return (
-    <div>
-      WELCOME
-      <UserInfo />
-    </div>
-  );
+  return <div>WELCOME to Main Page</div>;
 };
 
 export default pageWrapper(Home);

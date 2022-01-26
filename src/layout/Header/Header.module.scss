@@ -1,3 +1,66 @@
-.header {
-	border: 1px solid red;
+.main {
+	display: grid;
+	grid-template-areas: "logo title right";
+	grid-template-columns: 1fr 1fr auto;
+	column-gap: 10px;
+
+	.logoPlace {
+		grid-template-columns: minmax(150px, 1fr);
+
+		display: grid;
+		align-items: center;
+
+		border: 1px solid red;
+		grid-area: logo;
+	}
+
+	.titlePlace {
+		display: grid;
+		align-items: center;
+
+		border: 1px solid darkviolet;
+		grid-area: title;
+
+		@media (max-width: 765px) {
+			display: none;
+		}
+	}
+
+	.rightPlace {
+		display: grid;
+		align-items: center;
+		justify-content: end;
+		column-gap: 10px;
+
+		padding-right: 10px;
+
+		border: 1px solid green;
+		grid-template-columns: minmax(1fr, 200px);
+		grid-area: right;
+		grid-template-areas: "userInfo";
+
+		.userInfo {
+			grid-area: userInfo;
+		}
+
+		.mobileMenu {
+			grid-area: menu;
+
+			display: none;
+
+			@media (max-width: 765px) {
+				display: block;
+			}
+		}
+
+		@media (max-width: 765px) {
+			grid-template-areas: "userInfo menu";
+		}
+	}
+
+	@media (max-width: 765px) {
+		//grid-template-columns: minmax(320px, 1fr);
+		grid-template-areas: "logo right";
+		grid-template-columns: 1fr auto;
+	}
 }

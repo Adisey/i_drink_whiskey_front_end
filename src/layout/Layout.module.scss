@@ -12,13 +12,13 @@
 	.header {
 		grid-area: header;
 
-		display: none;
+		//display: none;
 
 		border: 1px solid green;
 
-		@media (max-width: 765px) {
-			display: block;
-		}
+		//@media (max-width: 765px) {
+		//	display: block;
+		//}
 	}
 
 	.sidebar {
