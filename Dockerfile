@@ -7,5 +7,5 @@ ADD . .
 ENV NODE_ENV production
 RUN yarn build
 #RUN npm prune --production
-CMD ["npm", "start"]
+CMD ["yarn", "start"]
 EXPOSE 3000

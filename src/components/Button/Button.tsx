@@ -1,9 +1,8 @@
 //Core
 import { ButtonHTMLAttributes, DetailedHTMLProps, ReactNode } from "react";
 //Style
+import cx from "classnames";
 import styles from "components/Button/Button.module.scss";
-
-import cn from "classnames";
 
 export interface ButtonProps
   extends DetailedHTMLProps<
@@ -22,7 +21,7 @@ export const Button = ({
 }: ButtonProps): JSX.Element => {
   return (
     <button
-      className={cn(styles.button, className, {
+      className={cx(styles.button, className, {
         [styles.primary]: appearance == "primary",
         [styles.ghost]: appearance == "ghost",
       })}
