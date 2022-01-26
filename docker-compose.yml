@@ -1,0 +1,19 @@
+version: "2.4"
+
+services:
+  frontend:
+    image: i_drink_whiskey_front_end:latest
+    container_name: whisky_frontend
+    ports:
+      - 3000:3000
+    networks:
+      - back
+    environment:
+      - NEXT_PUBLIC_BACKEND=192.168.50.200:4000
+
+networks:
+  back:
+    driver: bridge
+
+
+#
