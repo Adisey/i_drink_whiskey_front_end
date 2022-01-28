@@ -4,6 +4,7 @@ import type {
   GetStaticPaths,
   GetStaticProps,
   GetStaticPropsContext,
+  NextPage,
 } from "next";
 import { ParsedUrlQuery } from "querystring";
 //Interfaces
@@ -23,7 +24,9 @@ interface DistilleryProps extends Record<string, unknown> {
   item: GetDistillery_getDistillery;
 }
 
-const Distillery = ({ item }: DistilleryProps): JSX.Element => {
+const Distillery: NextPage<DistilleryProps> = ({
+  item,
+}: DistilleryProps): JSX.Element => {
   if (!item) {
     // ToDo: 17.12.2021 - may be go to DistilleryList
     return <Error404 />;
@@ -78,6 +81,7 @@ export const getStaticProps: GetStaticProps<DistilleryProps> = async ({
       },
     };
   } catch (errors) {
+    // ToDo: 17.12.2021 - may be go to DistilleryList
     console.log(+new Date(), "-()->", typeof errors, `-errors->`, errors);
     return { notFound: true };
   }

@@ -1,11 +1,12 @@
 //Core
 import React from "react";
+import { NextPage } from "next";
 
 import { pageWrapper } from "../../layout/pageWrapper";
 import { useDistilleryList } from "../../hooks/QraphQL/distillery";
 import { DistilleryList } from "../../components";
 
-const DistilleryMain = (): JSX.Element => {
+const DistilleryMain: NextPage = (): JSX.Element => {
   const { loading, data } = useDistilleryList();
   if (loading) {
     return <div>Loading..</div>;

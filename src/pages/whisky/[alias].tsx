@@ -4,6 +4,7 @@ import type {
   GetStaticPaths,
   GetStaticProps,
   GetStaticPropsContext,
+  NextPage,
 } from "next";
 import { ParsedUrlQuery } from "querystring";
 //Interfaces
@@ -24,9 +25,7 @@ interface WhiskyProps extends Record<string, unknown> {
   item: GetWhisky_getWhisky;
 }
 
-const Whisky = ({ item }: WhiskyProps): JSX.Element => {
-  console.log(+new Date(), "-(Whisky)->", typeof item, `-item->`, item);
-
+const Whisky: NextPage<WhiskyProps> = ({ item }: WhiskyProps): JSX.Element => {
   if (!item) {
     // ToDo: 17.12.2021 - may be go to WhiskyList
     return <Error404 />;
