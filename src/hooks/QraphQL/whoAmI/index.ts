@@ -1,7 +1,7 @@
 import * as Apollo from "@apollo/client";
 import WhoAmI from "hooks/QraphQL/whoAmI/whoAmI.graphql";
 import { IWhoAmIResponse } from "./types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   whoami,
   whoami_whoami,
@@ -24,17 +24,17 @@ export function useWhoAmIMemo(): IUseWhoAmIMemo {
 
   const { loading, data } = Apollo.useQuery<whoami>(WhoAmI);
 
-  console.log(+new Date(), "-(RENDER)-useWhoAmIMemo->", loading, data);
-
-  if (isLoading !== loading) {
-    setIsLoading(loading);
-  }
-  if (!loading) {
-    const loadingUser = data?.whoami;
-    if (JSON.stringify(user) !== JSON.stringify(loadingUser)) {
-      setUser({ ...loadingUser });
+  useEffect(() => {
+    if (isLoading !== loading) {
+      setIsLoading(loading);
     }
-  }
+    if (!loading) {
+      const loadingUser = data?.whoami;
+      if (JSON.stringify(user) !== JSON.stringify(loadingUser)) {
+        setUser({ ...loadingUser });
+      }
+    }
+  }, [loading]);
 
   return { isLoading: isLoading, ...user };
 }
