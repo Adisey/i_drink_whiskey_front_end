@@ -20,13 +20,13 @@ import { staticApolloClient } from "../../apolloClient";
 import { getDistilleryPatch } from "../../domains/distillery";
 import { WhiskeyList } from "../../components";
 
-interface DistilleryProps extends Record<string, unknown> {
+interface IDistilleryProps extends Record<string, unknown> {
   item: GetDistillery_getDistillery;
 }
 
-const Distillery: NextPage<DistilleryProps> = ({
+const Distillery: NextPage<IDistilleryProps> = ({
   item,
-}: DistilleryProps): JSX.Element => {
+}: IDistilleryProps): JSX.Element => {
   if (!item) {
     // ToDo: 17.12.2021 - may be go to DistilleryList
     return <Error404 />;
@@ -63,7 +63,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export const getStaticProps: GetStaticProps<DistilleryProps> = async ({
+export const getStaticProps: GetStaticProps<IDistilleryProps> = async ({
   params,
 }: GetStaticPropsContext<ParsedUrlQuery>) => {
   if (!params || !params.alias || typeof params.alias !== "string") {

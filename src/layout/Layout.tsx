@@ -4,11 +4,11 @@ import { Sidebar } from "./Sidebar/Sidebar";
 import { Footer } from "./Footer/Footer";
 import Styles from "./Layout.module.scss";
 
-export interface LayoutProps {
+export interface ILayoutProps {
   children: ReactNode;
 }
 
-const Layout = ({ children }: LayoutProps): JSX.Element => {
+const Layout = ({ children }: ILayoutProps): JSX.Element => {
   return (
     <div className={Styles.wrapper}>
       <Header className={Styles.header} />

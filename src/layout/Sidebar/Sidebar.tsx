@@ -3,10 +3,13 @@ import cx from "classnames";
 import Styles from "./Sidebar.module.scss";
 import { Menu } from "../Menu/Menu";
 
-export interface SidebarProps
+export interface ISidebarProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
 
-export const Sidebar = ({ className, ...props }: SidebarProps): JSX.Element => {
+export const Sidebar = ({
+  className,
+  ...props
+}: ISidebarProps): JSX.Element => {
   return (
     <div {...props} className={cx(Styles.sidebar, className)}>
       Sidebar

@@ -21,11 +21,13 @@ import { Error404 } from "../404";
 import { getWhiskyPatch } from "../../domains/whisky";
 import { staticApolloClient } from "../../apolloClient";
 
-interface WhiskyProps extends Record<string, unknown> {
+interface IWhiskyProps extends Record<string, unknown> {
   item: GetWhisky_getWhisky;
 }
 
-const Whisky: NextPage<WhiskyProps> = ({ item }: WhiskyProps): JSX.Element => {
+const Whisky: NextPage<IWhiskyProps> = ({
+  item,
+}: IWhiskyProps): JSX.Element => {
   if (!item) {
     // ToDo: 17.12.2021 - may be go to WhiskyList
     return <Error404 />;
@@ -61,7 +63,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 //
 
-export const getStaticProps: GetStaticProps<WhiskyProps> = async ({
+export const getStaticProps: GetStaticProps<IWhiskyProps> = async ({
   params,
 }: GetStaticPropsContext<ParsedUrlQuery>) => {
   if (!params || !params.alias || typeof params.alias !== "string") {

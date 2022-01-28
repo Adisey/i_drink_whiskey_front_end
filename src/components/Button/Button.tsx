@@ -1,10 +1,14 @@
 //Core
-import { ButtonHTMLAttributes, DetailedHTMLProps, ReactNode } from "react";
+import React, {
+  ButtonHTMLAttributes,
+  DetailedHTMLProps,
+  ReactNode,
+} from "react";
 //Style
 import cx from "classnames";
 import styles from "components/Button/Button.module.scss";
 
-export interface ButtonProps
+export interface IButtonProps
   extends DetailedHTMLProps<
     ButtonHTMLAttributes<HTMLButtonElement>,
     HTMLButtonElement
@@ -18,7 +22,7 @@ export const Button = ({
   children,
   className,
   ...props
-}: ButtonProps): JSX.Element => {
+}: IButtonProps): JSX.Element => {
   return (
     <button
       className={cx(styles.button, className, {

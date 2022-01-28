@@ -1,5 +1,5 @@
 //Core
-import {
+import React, {
   DetailedHTMLProps,
   ForwardedRef,
   forwardRef,
@@ -10,7 +10,7 @@ import { FieldError } from "react-hook-form";
 //Style
 import Styles from "components/Input/Input.module.scss";
 
-export interface InputProps
+export interface IInputProps
   extends DetailedHTMLProps<
     InputHTMLAttributes<HTMLInputElement>,
     HTMLInputElement
@@ -22,7 +22,7 @@ export interface InputProps
 
 export const Input = forwardRef(
   (
-    { className, error, label, labelPosition, ...props }: InputProps,
+    { className, error, label, labelPosition, ...props }: IInputProps,
     ref: ForwardedRef<HTMLInputElement>
   ): JSX.Element => {
     return (
