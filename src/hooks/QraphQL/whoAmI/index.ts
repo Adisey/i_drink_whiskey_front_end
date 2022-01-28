@@ -34,7 +34,7 @@ export function useWhoAmIMemo(): IUseWhoAmIMemo {
         setUser({ ...loadingUser });
       }
     }
-  }, [loading]);
+  }, [loading, data]);
 
   return { isLoading: isLoading, ...user };
 }
