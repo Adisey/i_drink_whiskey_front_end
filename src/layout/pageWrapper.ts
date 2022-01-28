@@ -1,6 +1,6 @@
 import { withLayout } from "./Layout";
-import { FunctionComponent } from "react";
+import { FC } from "react";
 
 export const pageWrapper = <T extends Record<string, unknown>>(
-  Component: FunctionComponent<T>
+  Component: FC<T>
 ) => withLayout(Component);

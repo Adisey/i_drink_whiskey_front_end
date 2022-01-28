@@ -96,7 +96,6 @@ export const Menu = (): JSX.Element => {
       {c.regions && c.regions.length && secondMenu(c.regions)}
     </div>
   ));
-
   return (
     <nav className={Styles.menu} role="navigation">
       {MainMenu}

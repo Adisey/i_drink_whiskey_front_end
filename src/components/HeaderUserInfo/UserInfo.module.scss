@@ -1,9 +1,21 @@
 .loading {
-	color: var(--green);
+	color: var(--gray);
 }
 
 .main {
 	.userInfo {
+		position: relative;
+
+		.loading2 {
+			position: absolute;
+
+			top: 5px;
+			left: 5px;
+
+			color: var(--gray-dark);
+			bolder: 3px solid var(--gray-dark);
+		}
+
 		.userName {
 			color: var(--green);
 		}
