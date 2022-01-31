@@ -25,16 +25,16 @@ export function useWhoAmIMemo(): IUseWhoAmIMemo {
   const { loading, data } = Apollo.useQuery<whoami>(WhoAmI);
 
   useEffect(() => {
-    if (isLoading !== loading) {
-      setIsLoading(loading);
-    }
     if (!loading) {
       const loadingUser = data?.whoami;
       if (JSON.stringify(user) !== JSON.stringify(loadingUser)) {
         setUser({ ...loadingUser });
       }
     }
+    if (isLoading !== loading) {
+      setIsLoading(loading);
+    }
   }, [loading, data]);
-
+  console.log(+new Date(), `--(RENDER)- useWhoAmIMemo ->`, isLoading, user);
   return { isLoading: isLoading, ...user };
 }

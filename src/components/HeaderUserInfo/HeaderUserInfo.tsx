@@ -15,7 +15,13 @@ const UserInfoMemo: React.FC<IDivMainProps> = ({
   ...props
 }: IDivMainProps): JSX.Element => {
   const { isLoading, email, role } = useWhoAmIMemo();
-
+  console.log(
+    +new Date(),
+    `--(RENDER)- UserInfoMemo ->`,
+    isLoading,
+    email,
+    role
+  );
   return (
     <div {...props} className={cx(Styles.userInfo, className)}>
       <Loading isLoading={isLoading} />
