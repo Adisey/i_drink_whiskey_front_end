@@ -1,0 +1,13 @@
+.main {
+	.userInfo {
+		position: relative;
+
+		.userName {
+			color: var(--green);
+		}
+
+		.userRole {
+			color: var(--red);
+		}
+	}
+}

@@ -23,6 +23,28 @@ export function useWhoAmIMemo(): IUseWhoAmIMemo {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const { loading, data } = Apollo.useQuery<whoami>(WhoAmI);
+  console.log(+new Date(), `--(useQuery)-  ->`, loading, data?.whoami);
+
+  useEffect(() => {
+    if (!loading) {
+      const loadingUser = data?.whoami;
+      if (JSON.stringify(user) !== JSON.stringify(loadingUser)) {
+        setUser({ ...loadingUser });
+      }
+    }
+    if (isLoading !== loading) {
+      setIsLoading(loading);
+    }
+  }, [loading, data]);
+  console.log(+new Date(), `--(RENDER)- useWhoAmIMemo ->`, isLoading, user);
+  return { isLoading: isLoading, ...user };
+}
+export function useWhoAmIMemo2(): IUseWhoAmIMemo {
+  const [user, setUser] = useState<IUser>({});
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const { loading, data } = Apollo.useQuery<whoami>(WhoAmI);
+  console.log(+new Date(), `--(useQuery)-  ->`, loading, data?.whoami);
 
   useEffect(() => {
     if (!loading) {

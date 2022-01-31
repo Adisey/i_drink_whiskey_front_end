@@ -8,7 +8,7 @@ import { IDivMainProps } from "../../interfaces/HTML.elements/div.main.props";
 import { useWhoAmIMemo } from "../../hooks/QraphQL/whoAmI";
 //Styles
 import cx from "classnames";
-import Styles from "./UserInfo.module.scss";
+import Styles from "components/HeaderUserInfo/HeaderUserInfo.module.scss";
 
 const UserInfoMemo: React.FC<IDivMainProps> = ({
   className,
@@ -44,7 +44,7 @@ export const HeaderUserInfo: React.FC<IDivMainProps> = ({
     cleanToken();
     goLogin();
   };
-
+  console.log(+new Date(), `--(RENDER)- HeaderUserInfo-user ->`, user);
   return user ? (
     <div {...props} className={cx(Styles.main, className)}>
       <UserInfoMemo />
