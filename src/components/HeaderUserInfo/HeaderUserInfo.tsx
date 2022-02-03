@@ -8,7 +8,7 @@ import { IDivMainProps } from "../../interfaces/HTML.elements/div.main.props";
 import { useWhoAmIMemo } from "../../hooks/QraphQL/whoAmI";
 //Styles
 import cx from "classnames";
-import Styles from "components/HeaderUserInfo/HeaderUserInfo.module.scss";
+import Styles from "./HeaderUserInfo.module.scss";
 
 const UserInfoMemo: React.FC<IDivMainProps> = ({
   className,

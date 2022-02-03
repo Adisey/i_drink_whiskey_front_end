@@ -6,4 +6,5 @@ export * from "./HeaderUserInfo/HeaderUserInfo";
 export * from "./Input/Input";
 export * from "./Loading/Loading";
 export * from "./LoginForm/LoginForm";
+export * from "./Logo/Logo";
 export * from "./WhiskeyList/WhiskeyList";
