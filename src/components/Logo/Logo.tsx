@@ -7,7 +7,7 @@ import { IDivMainProps } from "interfaces/HTML.elements/div.main.props";
 import logo from "./Logo-1.jpg";
 //Styles
 import cx from "classnames";
-import Styles from "./Logo.module.scss";
+import Styles from "components/Logo/Logo.module.scss";
 
 export const Logo: React.FC<IDivMainProps> = ({
   className,
