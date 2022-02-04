@@ -9,7 +9,6 @@ export interface ILayoutProps {
 }
 
 const Layout = ({ children }: ILayoutProps): JSX.Element => {
-  console.log(+new Date(), `--(RENDER)- Layout ->`);
   return (
     <div className={Styles.wrapper}>
       <Header className={Styles.header} />

@@ -18,7 +18,7 @@ export const Logo: React.FC<IDivMainProps> = ({
       <nav>
         <Link href="/">
           <a>
-            <Image src={logo} alt="I drink whisky" />
+            <Image src={logo} alt="I drink whisky" width={150} height={80} />
           </a>
         </Link>
       </nav>

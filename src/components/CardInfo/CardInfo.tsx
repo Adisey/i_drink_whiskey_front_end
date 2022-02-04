@@ -1,6 +1,6 @@
 //Core
 import React from "react";
-import cx from "classnames";
+import Image from "next/image";
 //Interfaces
 import { IDivMainProps } from "../../interfaces/HTML.elements/div.main.props";
 // Temp
@@ -10,6 +10,7 @@ import p3 from "./temp/187296-big.jpg";
 import p4 from "./temp/187295-big.jpg";
 import p5 from "./temp/187294-big.jpg";
 //Styles
+import cx from "classnames";
 import Styles from "./CardInfo.module.scss";
 
 export const CardInfo = ({
@@ -41,24 +42,66 @@ export const CardInfo = ({
         </div>
       </div>
       <div className={Styles.pictures}>
-        <div className={Styles.picture}>
-          <img src={p1.src} />
+        <div className={Styles.pictureContainer}>
+          <Image
+            src={p1}
+            sizes={"200px"}
+            objectFit={"scale-down"}
+            objectPosition={"center"}
+            placeholder={"blur"}
+            blurDataURL={"/whiskyBottle.svg"}
+          />
         </div>
         <div className={Styles.preview}>
-          <div className={Styles.picture}>
-            <img src={p1.src} />
+          <div className={Styles.pictureContainer}>
+            <Image
+              src={p1}
+              sizes={"50px"}
+              objectFit={"scale-down"}
+              objectPosition={"center"}
+              placeholder={"blur"}
+              blurDataURL={"/whiskyBottle.svg"}
+            />
           </div>
-          <div className={Styles.picture}>
-            <img src={p2.src} />
+          <div className={Styles.pictureContainer}>
+            <Image
+              src={p2}
+              sizes={"50px"}
+              objectFit={"scale-down"}
+              objectPosition={"center"}
+              placeholder={"blur"}
+              blurDataURL={"/whiskyBottle.svg"}
+            />
           </div>
-          <div className={Styles.picture}>
-            <img src={p3.src} />
+          <div className={Styles.pictureContainer}>
+            <Image
+              src={p3}
+              sizes={"50px"}
+              objectFit={"scale-down"}
+              objectPosition={"center"}
+              placeholder={"blur"}
+              blurDataURL={"/whiskyBottle.svg"}
+            />
           </div>
-          <div className={Styles.picture}>
-            <img src={p4.src} />
+          <div className={Styles.pictureContainer}>
+            <Image
+              src={p4}
+              sizes={"50px"}
+              objectFit={"scale-down"}
+              objectPosition={"center"}
+              placeholder={"blur"}
+              blurDataURL={"/whiskyBottle.svg"}
+            />
           </div>
-          <div className={Styles.picture}>
-            <img src={p5.src} />
+          <div className={Styles.pictureContainer}>
+            <Image
+              src={p5}
+              sizes={"50px"}
+              objectFit={"scale-down"}
+              objectPosition={"center"}
+              placeholder={"blur"}
+              blurDataURL={"/whiskyBottle.svg"}
+            />
           </div>
         </div>
       </div>

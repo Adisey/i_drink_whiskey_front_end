@@ -20,6 +20,7 @@ import { withLayout } from "../../layout/Layout";
 import { Error404 } from "../404";
 import { getWhiskyPatch } from "../../domains/whisky";
 import { staticApolloClient } from "../../apolloClient";
+import Head from "next/head";
 
 interface IWhiskyProps extends Record<string, unknown> {
   item: GetWhisky_getWhisky;
@@ -34,12 +35,20 @@ const Whisky: NextPage<IWhiskyProps> = ({
   }
 
   return (
-    <div>
+    <>
+      <Head>
+        <title>
+          {item?.name} {item?.age}
+        </title>
+      </Head>
       <h1>
         {item?.name} - {item?.age} - {item?.id}
       </h1>
+      <h2>Name: {item?.name}</h2>
+      <h2>Age: {item?.age}</h2>
+      <h2>Id:{item?.id}</h2>
       <CardInfo />
-    </div>
+    </>
   );
 };
 

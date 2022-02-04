@@ -82,20 +82,14 @@
 
 		border: 1px solid blueviolet;
 
-		.picture {
-			align-content: center;
-			justify-content: center;
+		.pictureContainer {
+			position: relative;
+
+			display: flex;
+			flex: 1 auto;
+			flex-direction: column;
 
 			height: 200px;
-
-			text-align: center;
-
-			border: 1px solid red;
-
-			img {
-				max-width: 150px;
-				max-height: 150px;
-			}
 		}
 
 		.preview {
@@ -107,21 +101,13 @@
 			border: 1px solid orangered;
 			grid-auto-flow: column;
 
-			.picture {
-				align-content: center;
-				justify-content: center;
-
+			.pictureContainer {
 				width: 50px;
 				height: 50px;
 
-				text-align: center;
+				margin: 5px;
 
 				border: 1px solid green;
-
-				img {
-					max-width: 50px;
-					max-height: 50px;
-				}
 			}
 		}
 	}
