@@ -8,9 +8,11 @@ import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
-    <AuthApolloProvider>
-      <Component {...pageProps} />
-    </AuthApolloProvider>
+    <>
+      <AuthApolloProvider>
+        <Component {...pageProps} />
+      </AuthApolloProvider>
+    </>
   );
 }
 
