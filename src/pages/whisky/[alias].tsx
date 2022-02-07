@@ -40,6 +40,7 @@ const Whisky: NextPage<IWhiskyProps> = ({
     <>
       <Head>
         <title>{title}</title>
+        <meta property="og:title" content={title} key="title" />
       </Head>
       <h1>
         {item?.name} - {item?.age} - {item?.id}

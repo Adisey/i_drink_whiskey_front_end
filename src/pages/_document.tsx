@@ -18,11 +18,12 @@ class MyDocument extends Document {
   }
 
   render(): JSX.Element {
+    const title = "I drink whisky";
     return (
       <Html lang="en">
         <Head>
-          <title>I drink whisky</title>
-          <meta property="og:title" content="I drink whisky" key="title" />
+          <title>{title}</title>
+          <meta property="og:title" content={title} key="title" />
           <Favicon />
         </Head>
         <body>
