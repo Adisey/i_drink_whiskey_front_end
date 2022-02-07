@@ -38,7 +38,7 @@ const Whisky: NextPage<IWhiskyProps> = ({
     <>
       <Head>
         <title>
-          {item?.name} {item?.age}
+          {item?.name} {item?.age} (WD)
         </title>
       </Head>
       <h1>
