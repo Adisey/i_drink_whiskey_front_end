@@ -34,12 +34,12 @@ const Whisky: NextPage<IWhiskyProps> = ({
     return <Error404 />;
   }
 
+  const title = `${item?.name}${item?.age ? " " + item?.age : ""}`;
+
   return (
     <>
       <Head>
-        <title>
-          {item?.name} {item?.age} (WD)
-        </title>
+        <title>{title}</title>
       </Head>
       <h1>
         {item?.name} - {item?.age} - {item?.id}

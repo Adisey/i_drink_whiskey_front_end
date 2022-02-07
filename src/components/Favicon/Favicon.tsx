@@ -3,7 +3,6 @@ import React from "react";
 export const Favicon: React.FC = () => {
   return (
     <>
-      <title>{"I drink whisky (FI)"}</title>
       <link
         rel="apple-touch-icon"
         sizes="180x180"

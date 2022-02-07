@@ -21,8 +21,8 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          <title>I drink whisky (_d)</title>
-          <meta property="og:title" content="My page title (_d)" key="title" />
+          <title>I drink whisky</title>
+          <meta property="og:title" content="I drink whisky" key="title" />
           <Favicon />
         </Head>
         <body>
