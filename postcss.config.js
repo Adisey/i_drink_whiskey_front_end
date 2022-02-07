@@ -15,15 +15,15 @@ module.exports = {
                 }
             }
         ],
-        [
-            '@fullhuman/postcss-purgecss',
-            {
-                content: [
-                    './**/*.{js,jsx,ts,tsx}',
-                ],
-                defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || [],
-                safelist: ['html', 'body']
-            }
-        ],
+        // [
+        //     '@fullhuman/postcss-purgecss',
+        //     {
+        //         content: [
+        //             './**/*.{js,jsx,ts,tsx}',
+        //         ],
+        //         defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || [],
+        //         safelist: ['html', 'body']
+        //     }
+        // ],
     ]
 };
