@@ -4,10 +4,10 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: GetWhisky
+// GraphQL query operation: GetWhiskyId
 // ====================================================
 
-export interface GetWhisky_getWhisky {
+export interface GetWhiskyId_getWhiskyId {
   __typename: "WhiskyGraphQLModel";
   id: string;
   name: string | null;
@@ -21,10 +21,10 @@ export interface GetWhisky_getWhisky {
   distillery: string | null;
 }
 
-export interface GetWhisky {
-  getWhisky: GetWhisky_getWhisky;
+export interface GetWhiskyId {
+  getWhiskyId: GetWhiskyId_getWhiskyId;
 }
 
-export interface GetWhiskyVariables {
+export interface GetWhiskyIdVariables {
   id: string;
 }

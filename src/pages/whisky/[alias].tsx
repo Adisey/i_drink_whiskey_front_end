@@ -9,7 +9,7 @@ import type {
 import { ParsedUrlQuery } from "querystring";
 //Interfaces
 import { IWhiskyListResponse } from "../../hooks/QraphQL/whisky/types";
-import { GetWhisky_getWhisky } from "../../hooks/QraphQL/whisky/__generated__/GetWhisky";
+import { GetWhiskyId_getWhiskyId } from "../../hooks/QraphQL/whisky/__generated__/GetWhiskyId";
 import { WhiskyList_whiskyList_list } from "../../hooks/QraphQL/whisky/__generated__/WhiskyList";
 // GraphQl
 import WhiskyGQL from "../../hooks/QraphQL/whisky/whisky.graphql";
@@ -23,7 +23,7 @@ import { staticApolloClient } from "../../apolloClient";
 import Head from "next/head";
 
 interface IWhiskyProps extends Record<string, unknown> {
-  item: GetWhisky_getWhisky;
+  item: GetWhiskyId_getWhiskyId;
 }
 
 const Whisky: NextPage<IWhiskyProps> = ({
@@ -87,7 +87,7 @@ export const getStaticProps: GetStaticProps<IWhiskyProps> = async ({
     });
     return {
       props: {
-        item: data.getWhisky,
+        item: data.getWhiskyId,
       },
     };
   } catch (errors) {
