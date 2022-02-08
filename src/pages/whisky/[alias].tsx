@@ -10,7 +10,6 @@ import { ParsedUrlQuery } from "querystring";
 //Interfaces
 import { IWhiskyListResponse } from "../../hooks/QraphQL/whisky/types";
 import {
-  GetWhiskyByIdId,
   GetWhiskyById_getWhiskyById,
   GetWhiskyById,
 } from "../../hooks/QraphQL/whisky/__generated__/GetWhiskyById";
