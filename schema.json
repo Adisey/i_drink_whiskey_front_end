@@ -2164,7 +2164,7 @@
             "deprecationReason": null
           },
           {
-            "name": "getWhiskyId",
+            "name": "getWhiskyById",
             "description": null,
             "args": [
               {
@@ -2197,7 +2197,7 @@
             "deprecationReason": null
           },
           {
-            "name": "getWhiskyName",
+            "name": "getWhiskyByName",
             "description": null,
             "args": [
               {
@@ -2230,7 +2230,7 @@
             "deprecationReason": null
           },
           {
-            "name": "getWhiskyWB",
+            "name": "getWhiskyByWB",
             "description": null,
             "args": [
               {

@@ -9,7 +9,11 @@ import type {
 import { ParsedUrlQuery } from "querystring";
 //Interfaces
 import { IWhiskyListResponse } from "../../hooks/QraphQL/whisky/types";
-import { GetWhiskyId_getWhiskyId } from "../../hooks/QraphQL/whisky/__generated__/GetWhiskyId";
+import {
+  GetWhiskyByIdId,
+  GetWhiskyById_getWhiskyById,
+  GetWhiskyById,
+} from "../../hooks/QraphQL/whisky/__generated__/GetWhiskyById";
 import { WhiskyList_whiskyList_list } from "../../hooks/QraphQL/whisky/__generated__/WhiskyList";
 // GraphQl
 import WhiskyGQL from "../../hooks/QraphQL/whisky/whisky.graphql";
@@ -23,7 +27,7 @@ import { staticApolloClient } from "../../apolloClient";
 import Head from "next/head";
 
 interface IWhiskyProps extends Record<string, unknown> {
-  item: GetWhiskyId_getWhiskyId;
+  item: GetWhiskyById_getWhiskyById;
 }
 
 const Whisky: NextPage<IWhiskyProps> = ({
@@ -81,23 +85,17 @@ export const getStaticProps: GetStaticProps<IWhiskyProps> = async ({
   }
   const id = params?.alias;
   try {
-    const { data } = await staticApolloClient.query({
+    const { data } = await staticApolloClient.query<GetWhiskyById>({
       query: WhiskyGQL,
       variables: { id },
     });
     return {
       props: {
-        item: data.getWhiskyId,
+        item: data.getWhiskyById,
       },
     };
   } catch (errors) {
     console.log(+new Date(), "-()->", typeof errors, `-errors->`, errors);
     return { notFound: true };
   }
-
-  return {
-    props: {
-      item: {},
-    },
-  };
 };

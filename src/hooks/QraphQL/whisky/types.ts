@@ -1,11 +1,11 @@
 import { IMainGQLResponse } from "interfaces/GraphQL.main";
 import { WhiskyList } from "./__generated__/WhiskyList";
-import { GetWhiskyId } from "./__generated__/GetWhiskyId";
+import { GetWhiskyById } from "./__generated__/GetWhiskyById";
 
 export type IWhiskyListResponse = {
   data: WhiskyList;
 } & IMainGQLResponse;
 
 export type IWhiskyResponse = IMainGQLResponse & {
-  data: GetWhiskyId;
+  data: GetWhiskyById;
 };

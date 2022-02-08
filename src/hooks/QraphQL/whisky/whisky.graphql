@@ -1,5 +1,5 @@
-query GetWhiskyId($id: String!) {
-    getWhiskyId(id: $id) {
+query GetWhiskyById($id: String!) {
+    getWhiskyById(id: $id) {
         id
         name
         description
