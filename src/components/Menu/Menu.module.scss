@@ -1,13 +1,24 @@
+.mainMenu {
+	display: block;
+}
+
+.dataWrapper {
+	display: block;
+}
+
 .menu {
 	margin: 5px;
 
 	.firstLevel {
 		color: darkviolet;
 
+		border: 1px solid darkviolet;
+
 		.secondLevel {
 			margin-left: 12px;
 
 			color: red;
+			border: 1px solid red;
 
 			font-weight: normal;
 
@@ -15,6 +26,7 @@
 				margin-left: 12px;
 
 				color: blue;
+				border: 1px solid blue;
 
 				font-weight: normal;
 
@@ -22,6 +34,7 @@
 					margin-left: 12px;
 
 					color: green;
+					border: 1px solid green;
 
 					font-weight: normal;
 				}

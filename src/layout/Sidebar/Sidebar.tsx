@@ -1,7 +1,7 @@
 import React, { DetailedHTMLProps, HTMLAttributes } from "react";
 import cx from "classnames";
 import Styles from "./Sidebar.module.scss";
-import { Menu } from "../Menu/Menu";
+import { MainMenu } from "../../components";
 
 export interface ISidebarProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
@@ -13,7 +13,7 @@ export const Sidebar = ({
   return (
     <div {...props} className={cx(Styles.sidebar, className)}>
       Sidebar
-      <Menu />
+      <MainMenu />
     </div>
   );
 };
