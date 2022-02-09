@@ -6,6 +6,32 @@
 	display: block;
 }
 
+.menuOpenItem {
+	font-weight: bolder;
+
+	.icon {
+		transform: rotate(90deg);
+	}
+}
+
+.menuItem {
+	display: grid;
+	align-items: center;
+
+	border: 1px solid yellowgreen;
+	grid-template-columns: auto 20px;
+	grid-template-areas: "title icon";
+
+	.title {
+		grid-area: title;
+	}
+
+	.icon {
+		transition: 1s;
+		grid-area: icon;
+	}
+}
+
 .menu {
 	margin: 5px;
 

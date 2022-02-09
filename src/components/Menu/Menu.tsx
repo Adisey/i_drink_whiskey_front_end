@@ -15,12 +15,18 @@ import { useMenu } from "hooks/QraphQL/menu";
 import { getDistilleryPatch } from "domains/distillery";
 import { getWhiskyPatch } from "domains/whisky";
 import { Loading } from "../";
+import Arrow from "./arrow.svg";
 //Styles
 import cx from "classnames";
 import Styles from "./Menu.module.scss";
 
 interface IMenu extends IDivMainProps {
   countries: PagesListTree_pagesListTree_countries[];
+}
+
+interface ISubmenu {
+  isChildrenOpen: boolean;
+  items: JSX.Element;
 }
 
 const Menu: React.FC<IMenu> = ({
@@ -30,81 +36,148 @@ const Menu: React.FC<IMenu> = ({
 }: IMenu): JSX.Element => {
   const { asPath } = useRouter();
 
-  const fourthMenu = (
+  const whiskiesMenu = (
     ws: PagesListTree_pagesListTree_countries_regions_distilleries_whiskies[]
-  ) => (
-    <>
-      {ws.map(
-        (
-          w: PagesListTree_pagesListTree_countries_regions_distilleries_whiskies
-        ) => {
-          const patch = getWhiskyPatch(w);
+  ): ISubmenu => {
+    let isMyChildrenOpen = false;
+    const items = (
+      <>
+        {ws.map(
+          (
+            w: PagesListTree_pagesListTree_countries_regions_distilleries_whiskies
+          ) => {
+            const patch = getWhiskyPatch(w);
+            const isOpen = patch === asPath;
+            isMyChildrenOpen = isMyChildrenOpen || isOpen;
+
+            return (
+              <div
+                key={w.id}
+                className={cx(Styles.fourthLevel, {
+                  [Styles.active]: isOpen,
+                })}
+              >
+                <Link href={patch}>
+                  <a>{w.name}</a>
+                </Link>
+              </div>
+            );
+          }
+        )}
+      </>
+    );
+    return { isChildrenOpen: isMyChildrenOpen, items };
+  };
+
+  const distilleriesMenu = (
+    ds: PagesListTree_pagesListTree_countries_regions_distilleries[]
+  ): ISubmenu => {
+    let isMyChildrenOpen = false;
+    const items = (
+      <>
+        {ds.map(
+          (d: PagesListTree_pagesListTree_countries_regions_distilleries) => {
+            const patch = getDistilleryPatch(d);
+            const isOpen = patch === asPath;
+            const { isChildrenOpen, items } = whiskiesMenu(d.whiskies);
+            isMyChildrenOpen = isMyChildrenOpen || isOpen || isChildrenOpen;
+
+            return (
+              <div key={d.id} className={Styles.thirdLevel}>
+                <div
+                  className={cx(Styles.menuItem, {
+                    [Styles.menuOpenItem]: isOpen || isChildrenOpen,
+                  })}
+                >
+                  <div className={Styles.title}>
+                    <Link href={patch}>
+                      <a>
+                        {d.name}{" "}
+                        {d.whiskies.length ? `- (${d.whiskies.length})` : ""}
+                      </a>
+                    </Link>
+                  </div>
+                  <Arrow className={Styles.icon} />
+                </div>
+                {items}
+              </div>
+            );
+          }
+        )}
+      </>
+    );
+
+    return { isChildrenOpen: isMyChildrenOpen, items };
+  };
+  const regionsMenu = (
+    rs: PagesListTree_pagesListTree_countries_regions[]
+  ): ISubmenu => {
+    let isMyChildrenOpen = false;
+    const items = (
+      <>
+        {rs.map((r: PagesListTree_pagesListTree_countries_regions) => {
+          const isOpen = false;
+          const { isChildrenOpen, items } = distilleriesMenu(r.distilleries);
+          isMyChildrenOpen = isMyChildrenOpen || isOpen || isChildrenOpen;
+
           return (
-            <div
-              key={w.id}
-              className={cx(Styles.fourthLevel, {
-                [Styles.active]: patch === asPath,
-              })}
-            >
-              <Link href={patch}>
-                <a>{w.name}</a>
-              </Link>
+            <div key={r.id} className={Styles.secondLevel}>
+              <div
+                className={cx(Styles.menuItem, {
+                  [Styles.menuOpenItem]: isOpen || isChildrenOpen,
+                })}
+              >
+                <div className={Styles.title}>
+                  <Link href={"#"}>
+                    <a>
+                      {r.name}{" "}
+                      {r.distilleries.length
+                        ? `- (${r.distilleries.length})`
+                        : ""}
+                    </a>
+                  </Link>
+                </div>
+                <Arrow className={Styles.icon} />
+              </div>
+              {items}
             </div>
           );
-        }
-      )}
-    </>
-  );
+        })}
+      </>
+    );
 
-  const thirdMenu = (
-    ds: PagesListTree_pagesListTree_countries_regions_distilleries[]
-  ) => (
-    <>
-      {ds.map(
-        (d: PagesListTree_pagesListTree_countries_regions_distilleries) => {
-          const patch = getDistilleryPatch(d);
-          return (
-            <div
-              key={d.id}
-              className={cx(Styles.thirdLevel, {
-                [Styles.active]: patch === asPath,
-              })}
-            >
-              <Link href={patch}>
+    return { isChildrenOpen: isMyChildrenOpen, items };
+  };
+
+  const CountriesMenu = countries?.map(
+    (c: PagesListTree_pagesListTree_countries) => {
+      const isOpen = false;
+      const { isChildrenOpen, items } = regionsMenu(c.regions);
+      return (
+        <div key={c.id} className={Styles.firstLevel}>
+          <div
+            className={cx(Styles.menuItem, {
+              [Styles.menuOpenItem]: isOpen || isChildrenOpen,
+            })}
+          >
+            <div className={Styles.title}>
+              <Link href={"#"}>
                 <a>
-                  {d.name} {d.whiskies.length ? `- (${d.whiskies.length})` : ""}
+                  {c.name} {c.regions.length ? `- (${c.regions.length})` : ""}
                 </a>
               </Link>
-              {d.whiskies && d.whiskies.length && fourthMenu(d.whiskies)}
             </div>
-          );
-        }
-      )}
-    </>
-  );
-  const secondMenu = (rs: PagesListTree_pagesListTree_countries_regions[]) => (
-    <>
-      {rs.map((r: PagesListTree_pagesListTree_countries_regions) => (
-        <div key={r.id} className={Styles.secondLevel}>
-          {r.name}
-          {r.distilleries && r.distilleries.length && thirdMenu(r.distilleries)}
+            <Arrow className={Styles.icon} />
+          </div>
+          {items}
         </div>
-      ))}
-    </>
-  );
-
-  const MainMenu = countries?.map(
-    (c: PagesListTree_pagesListTree_countries) => (
-      <div key={c.id} className={Styles.firstLevel}>
-        {c.name}
-        {c.regions && c.regions.length && secondMenu(c.regions)}
-      </div>
-    )
+      );
+    }
   );
 
   return (
     <nav {...props} className={cx(Styles.menu, className)} role="navigation">
-      {MainMenu}
+      {CountriesMenu}
     </nav>
   );
 };
