@@ -1,0 +1,13 @@
+query GetRegion($id: String!) {
+    getRegion(id: $id) {
+        id
+        name
+        description
+        countryId
+        country
+        children{
+            id,
+            name
+        }
+    }
+}

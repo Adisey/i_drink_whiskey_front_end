@@ -1,9 +1,9 @@
 //Core
 import * as Apollo from "@apollo/client";
 //interface
-import { IDistilleryListResponse } from "hooks/QraphQL/distillery/types";
+import { IDistilleryListResponse } from "./types";
 //graphql
-import DistilleryListGQL from "hooks/QraphQL/distillery/distilleryList.graphql";
+import DistilleryListGQL from "./distilleryList.graphql";
 
 export function useDistilleryList(): IDistilleryListResponse {
   const options = {};

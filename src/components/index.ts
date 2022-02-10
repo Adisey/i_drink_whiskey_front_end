@@ -8,4 +8,5 @@ export * from "./Loading/Loading";
 export * from "./LoginForm/LoginForm";
 export * from "./Logo/Logo";
 export * from "./Menu/Menu";
+export * from "./RegionList/RegionList";
 export * from "./WhiskeyList/WhiskeyList";

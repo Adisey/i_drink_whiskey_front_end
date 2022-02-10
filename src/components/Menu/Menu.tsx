@@ -40,19 +40,7 @@ export const MenuItem: React.FC<IMenuItem> = ({
 
   useEffect(() => {
     const itIsMy = asPath === patch;
-    console.log(
-      +new Date(),
-      "-(useEffect)-asPath->",
-      asPath,
-      id,
-      itIsMy,
-      `-isOpen->`,
-      isOpen,
-      `-isActiveChildren->`,
-      isActiveChildren
-    );
     if (!isOpen && itIsMy) {
-      console.log(+new Date(), "-(useEffect)-asPath->", "SET isOpen");
       isChildren && setIsOpen(true);
       setIsOpenParent && setIsOpenParent(true);
     }

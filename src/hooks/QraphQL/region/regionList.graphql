@@ -1,0 +1,12 @@
+query RegionList {
+    regionsList(pageSize: 10000) {
+        list {
+            id
+            name
+            description
+            countryId
+            country
+        }
+        totalCount
+    }
+}

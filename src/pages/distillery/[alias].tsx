@@ -28,7 +28,7 @@ const Distillery: NextPage<IDistilleryProps> = ({
   item,
 }: IDistilleryProps): JSX.Element => {
   if (!item) {
-    // ToDo: 17.12.2021 - may be go to DistilleryList
+    // ToDo: 17.12.2021 - may be go to RegionList
     return <Error404 />;
   }
 
@@ -81,7 +81,7 @@ export const getStaticProps: GetStaticProps<IDistilleryProps> = async ({
       },
     };
   } catch (errors) {
-    // ToDo: 17.12.2021 - may be go to DistilleryList
+    // ToDo: 17.12.2021 - may be go to RegionList
     console.log(+new Date(), "-()->", typeof errors, `-errors->`, errors);
     return { notFound: true };
   }
