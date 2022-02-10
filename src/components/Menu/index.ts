@@ -16,11 +16,13 @@ export interface IMenuItem extends IDivMainProps {
   patch: string;
   children?: IMenuItem[];
   setIsActiveParent?: (value: boolean) => void;
+  setIsOpenParent?: (value: boolean) => void;
 }
 
 export interface IMenuChildrenList extends IDivMainProps {
   isOpen: boolean;
   setIsActiveParent?: (value: boolean) => void;
+  setIsOpenParent?: (value: boolean) => void;
   children?: IMenuItem[];
 }
 

@@ -19,13 +19,16 @@ export const MenuItem: React.FC<IMenuItem> = ({
   patch,
   children,
   setIsActiveParent,
+  setIsOpenParent,
   className,
   ...props
 }: IMenuItem) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isOpenChildren, setIsOpenChildren] = useState<boolean>(false);
   const [isActiveItem, setIsActiveItem] = useState<boolean>(false);
   const [isActiveChildren, setIsActiveChildren] = useState<boolean>(false);
   const { asPath } = useRouter();
+  const isChildren = !!children?.length;
 
   useEffect(() => {
     const itIsMy = asPath === patch;
@@ -35,7 +38,30 @@ export const MenuItem: React.FC<IMenuItem> = ({
     }
   });
 
-  const isChildren = !!children?.length;
+  useEffect(() => {
+    const itIsMy = asPath === patch;
+    console.log(
+      +new Date(),
+      "-(useEffect)-asPath->",
+      asPath,
+      id,
+      itIsMy,
+      `-isOpen->`,
+      isOpen,
+      `-isActiveChildren->`,
+      isActiveChildren
+    );
+    if (!isOpen && itIsMy) {
+      console.log(+new Date(), "-(useEffect)-asPath->", "SET isOpen");
+      isChildren && setIsOpen(true);
+      setIsOpenParent && setIsOpenParent(true);
+    }
+  }, [asPath]);
+
+  const myChildrenIsOpen = (isActive: boolean) => {
+    setIsOpenChildren(isActive);
+    setIsOpenParent && setIsOpenParent(isActive);
+  };
 
   const myChildrenIsActive = (isActive: boolean) => {
     setIsActiveChildren(isActive);
@@ -46,7 +72,7 @@ export const MenuItem: React.FC<IMenuItem> = ({
     <div key={id} className={cx(Styles.menuItemWrapper, className)} {...props}>
       <div
         className={cx(Styles.menuItem, {
-          [Styles.menuOpenItem]: isOpen,
+          [Styles.menuOpenItem]: isOpen || isOpenChildren,
           [Styles.menuActiveItem]: isActiveItem || isActiveChildren,
         })}
       >
@@ -63,9 +89,10 @@ export const MenuItem: React.FC<IMenuItem> = ({
       </div>
       {isChildren ? (
         <MenuList
-          isOpen={isOpen}
+          isOpen={isOpen || isOpenChildren}
           children={children}
           setIsActiveParent={myChildrenIsActive}
+          setIsOpenParent={myChildrenIsOpen}
         />
       ) : null}
     </div>
@@ -76,10 +103,10 @@ export const MenuList: React.FC<IMenuChildrenList> = ({
   children,
   isOpen,
   setIsActiveParent,
+  setIsOpenParent,
   className,
   ...props
 }: IMenuChildrenList) => {
-  console.log(+new Date(), "-(MenuList)->", children?.length, children);
   return (
     <div
       className={cx(Styles.childrenList, className, {
@@ -93,6 +120,7 @@ export const MenuList: React.FC<IMenuChildrenList> = ({
             key={item.id}
             {...item}
             setIsActiveParent={setIsActiveParent}
+            setIsOpenParent={setIsOpenParent}
           />
         );
       })}
