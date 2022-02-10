@@ -12,7 +12,6 @@ export const Sidebar = ({
 }: ISidebarProps): JSX.Element => {
   return (
     <div {...props} className={cx(Styles.sidebar, className)}>
-      Sidebar
       <MainMenu />
     </div>
   );

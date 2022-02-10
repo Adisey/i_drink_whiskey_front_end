@@ -14,11 +14,24 @@
 	}
 }
 
+.menuActiveItem {
+	background-color: var(--gray-light);
+
+	.title {
+		font-style: italic;
+	}
+}
+
+.menuHideItem {
+	display: none;
+//?????????????????
+
+}
+
 .menuItem {
 	display: grid;
 	align-items: center;
 
-	border: 1px solid yellowgreen;
 	grid-template-columns: auto 20px;
 	grid-template-areas: "title icon";
 
@@ -27,8 +40,47 @@
 	}
 
 	.icon {
-		transition: 1s;
+		cursor: pointer;
+		transition: 100ms;
 		grid-area: icon;
+	}
+}
+
+.childrenList {
+	margin-left: 12px;
+}
+
+.hideList {
+	display: none;
+}
+
+.countryMenu {
+	.countryMenuItem {
+		border-bottom: 2px solid var(--gray);
+
+		.regionList {
+			margin-left: 12px;
+
+			.regionMenuItem {
+				border-bottom: 2px solid var(--gray);
+
+				.distilleryList {
+					margin-left: 12px;
+
+					.distilleryMenuItem {
+						border-bottom: 2px solid var(--gray);
+
+						.whiskyList {
+							margin-left: 12px;
+
+							.whiskyMenuItem {
+								//border: 1px solid red;
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 }
 
@@ -38,13 +90,10 @@
 	.firstLevel {
 		color: darkviolet;
 
-		border: 1px solid darkviolet;
-
 		.secondLevel {
 			margin-left: 12px;
 
 			color: red;
-			border: 1px solid red;
 
 			font-weight: normal;
 
@@ -52,7 +101,6 @@
 				margin-left: 12px;
 
 				color: blue;
-				border: 1px solid blue;
 
 				font-weight: normal;
 
@@ -60,7 +108,6 @@
 					margin-left: 12px;
 
 					color: green;
-					border: 1px solid green;
 
 					font-weight: normal;
 				}

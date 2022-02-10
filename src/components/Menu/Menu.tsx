@@ -19,6 +19,8 @@ import Arrow from "./arrow.svg";
 //Styles
 import cx from "classnames";
 import Styles from "./Menu.module.scss";
+import { CountryMenu } from "components/Menu/aaaa";
+import { makeMenuCountries, MenuList } from "components/Menu/bbbb";
 
 interface IMenu extends IDivMainProps {
   countries: PagesListTree_pagesListTree_countries[];
@@ -198,7 +200,9 @@ const MenuDataWrapper: React.FC<IDivMainProps> = ({
   return (
     <div {...props} className={cx(Styles.dataWrapper, className)}>
       <Loading isLoading={loading} />
-      <Menu countries={countries} />
+      {/*<Menu countries={countries} />*/}
+      <MenuList isOpen={true} children={makeMenuCountries(countries)} />
+      {/*<CountryMenu items={countries} />*/}
     </div>
   );
 };
