@@ -1,129 +1,51 @@
 .mainMenu {
 	display: block;
-}
 
-.dataWrapper {
-	display: block;
-}
+	.dataWrapper {
+		display: block;
 
-.menuOpenItem {
-	font-weight: bolder;
-
-	.icon {
-		transform: rotate(90deg);
-	}
-}
-
-.menuActiveItem {
-	background-color: var(--gray-light);
-
-	.title {
-		font-style: italic;
-	}
-}
-
-.menuHideItem {
-	display: none;
-//?????????????????
-
-}
-
-.menuItem {
-	display: grid;
-	align-items: center;
-
-	grid-template-columns: auto 20px;
-	grid-template-areas: "title icon";
-
-	.title {
-		grid-area: title;
-	}
-
-	.icon {
-		cursor: pointer;
-		transition: 100ms;
-		grid-area: icon;
-	}
-}
-
-.childrenList {
-	margin-left: 12px;
-}
-
-.hideList {
-	display: none;
-}
-
-.countryMenu {
-	.countryMenuItem {
-		border-bottom: 2px solid var(--gray);
-
-		.regionList {
+		.childrenList {
 			margin-left: 12px;
 
-			.regionMenuItem {
-				border-bottom: 2px solid var(--gray);
+			.menuItemWrapper {
+				.menuItem {
+					display: grid;
+					align-items: center;
 
-				.distilleryList {
-					margin-left: 12px;
+					grid-template-columns: auto 20px;
+					grid-template-areas: "title icon";
 
-					.distilleryMenuItem {
-						border-bottom: 2px solid var(--gray);
+					.title {
+						grid-area: title;
+					}
 
-						.whiskyList {
-							margin-left: 12px;
+					.icon {
+						cursor: pointer;
+						transition: 100ms;
+						grid-area: icon;
+					}
+				}
 
-							.whiskyMenuItem {
-								//border: 1px solid red;
-							}
-						}
+				.menuOpenItem {
+					font-weight: bolder;
+
+					.icon {
+						transform: rotate(90deg);
+					}
+				}
+
+				.menuActiveItem {
+					background-color: var(--gray-light);
+
+					.title {
+						font-style: italic;
 					}
 				}
 			}
 		}
-	}
-}
 
-.menu {
-	margin: 5px;
-
-	.firstLevel {
-		color: darkviolet;
-
-		.secondLevel {
-			margin-left: 12px;
-
-			color: red;
-
-			font-weight: normal;
-
-			.thirdLevel {
-				margin-left: 12px;
-
-				color: blue;
-
-				font-weight: normal;
-
-				.fourthLevel {
-					margin-left: 12px;
-
-					color: green;
-
-					font-weight: normal;
-				}
-
-				.active {
-					font-weight: bolder;
-				}
-			}
-
-			.active {
-				font-weight: bolder;
-			}
-		}
-
-		.active {
-			font-weight: bolder;
+		.hideList {
+			display: none;
 		}
 	}
 }
