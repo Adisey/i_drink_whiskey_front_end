@@ -35,7 +35,7 @@ const Distillery: NextPage<IDistilleryProps> = ({
   return (
     <div>
       <h1>
-        {item?.name} - {item?.id}
+        {item?.name} - {item?.id} - ({item?.children?.length})
       </h1>
       <WhiskeyList whiskyList={item?.children} />
     </div>
@@ -71,10 +71,18 @@ export const getStaticProps: GetStaticProps = async ({
   }
   const id = params?.alias;
   try {
+    console.log(+new Date(), `--(Distillery)- Get data ->`);
     const { data } = await staticApolloClient.query({
       query: DistilleryGQL,
       variables: { id },
+      fetchPolicy: "no-cache",
     });
+    console.log(
+      +new Date(),
+      `--(Distillery)- Data ->`,
+      data?.getDistillery?.name,
+      data?.getDistillery?.children?.length
+    );
     return {
       props: {
         item: data.getDistillery,
@@ -86,10 +94,4 @@ export const getStaticProps: GetStaticProps = async ({
     console.log(+new Date(), "-()->", typeof errors, `-errors->`, errors);
     return { notFound: true };
   }
-
-  return {
-    props: {
-      item: {},
-    },
-  };
 };
