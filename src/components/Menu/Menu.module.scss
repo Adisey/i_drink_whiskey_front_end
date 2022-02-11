@@ -4,23 +4,30 @@
 	.dataWrapper {
 		display: block;
 
+		padding-left: -12px;
+
 		.childrenList {
-			margin-left: 12px;
+			padding-left: 12px;
 
 			.menuItemWrapper {
 				.menuItem {
 					display: grid;
 					align-items: center;
 
-					grid-template-columns: auto 20px;
-					grid-template-areas: "title icon";
+					padding-left: 6px;
 
 					border-top: 1px solid transparent;
 					border-bottom: 1px solid transparent;
 
+					grid-template-columns: auto 20px;
+					grid-template-areas: "title icon";
+
+					border-radius: 0 10px 10px 5px;
+
 					&:hover {
 						border-top: 1px solid var(--gray);
 						border-bottom: 1px solid var(--gray);
+						background-color: var(--gray-dark);
 					}
 
 					.title {
@@ -28,9 +35,18 @@
 					}
 
 					.icon {
+						width: 15px;
+						height: 15px;
+
 						cursor: pointer;
 						transition: 100ms;
+
+						border-radius: 50%;
 						grid-area: icon;
+
+						&:hover {
+							background-color: var(--white);
+						}
 					}
 				}
 

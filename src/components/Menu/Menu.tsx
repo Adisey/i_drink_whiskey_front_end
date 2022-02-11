@@ -56,6 +56,12 @@ export const MenuItem: React.FC<IMenuItem> = ({
     setIsActiveParent && setIsActiveParent(isActive);
   };
 
+  const setOpen = (): void => {
+    const isO = isOpen || isOpenChildren;
+    setIsOpen(!isO);
+    setIsOpenChildren(!isO);
+  };
+
   return (
     <div key={id} className={cx(Styles.menuItemWrapper, className)} {...props}>
       <div
@@ -64,15 +70,13 @@ export const MenuItem: React.FC<IMenuItem> = ({
           [Styles.menuActiveItem]: isActiveItem || isActiveChildren,
         })}
       >
-        <div className={Styles.title}>
-          <Link href={patch}>
-            <a>
-              {name} {children?.length ? `- (${children.length})` : ""}
-            </a>
-          </Link>
-        </div>
+        <Link href={patch}>
+          <a className={Styles.title}>
+            {name} {children?.length ? `- (${children.length})` : ""}
+          </a>
+        </Link>
         {isChildren ? (
-          <Arrow className={Styles.icon} onClick={() => setIsOpen(!isOpen)} />
+          <Arrow className={Styles.icon} onClick={setOpen} />
         ) : null}
       </div>
       {isChildren ? (
