@@ -90,5 +90,6 @@ export const getStaticProps: GetStaticProps<IDistilleryProps> = async ({
     props: {
       item: {},
     },
+    revalidate: 60,
   };
 };
