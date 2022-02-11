@@ -18,6 +18,7 @@ import {
 import RegionListGQL from "../../hooks/QraphQL/region/regionList.graphql";
 import GetRegion from "../../hooks/QraphQL/region/region.graphql";
 //Other
+import { settings } from "../../settings";
 import { withLayout } from "layout/Layout";
 import { Error404 } from "../404";
 import { getRegionPatch } from "../../domains/region";
@@ -74,7 +75,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export const getStaticProps: GetStaticProps<IRegionProps> = async ({
+// export const getStaticProps: GetStaticProps<IRegionProps> = async ({ // ToDo: 11.02.2022 - Check
+export const getStaticProps: GetStaticProps = async ({
   params,
 }: GetStaticPropsContext<ParsedUrlQuery>) => {
   if (!params || !params.alias || typeof params.alias !== "string") {
@@ -85,11 +87,13 @@ export const getStaticProps: GetStaticProps<IRegionProps> = async ({
     const { data } = await staticApolloClient.query({
       query: GetRegion,
       variables: { id },
+      fetchPolicy: settings.pageStaticPropsCacheFetchPolicy,
     });
     return {
       props: {
         item: data.getRegion,
       },
+      revalidate: settings.pageStaticPropsRevalidateSecond,
     };
   } catch (errors) {
     // ToDo: 17.12.2021 - may be go to RegionList

@@ -6,14 +6,15 @@ import type {
   GetStaticPropsContext,
   NextPage,
 } from "next";
-import { ParsedUrlQuery } from "querystring";
 //Interfaces
+import { ParsedUrlQuery } from "querystring";
 import { IDistilleryListResponse } from "../../hooks/QraphQL/distillery/types";
 import { GetDistillery_getDistillery } from "../../hooks/QraphQL/distillery/__generated__/GetDistillery";
 //GraphQl
 import DistilleryListGQL from "../../hooks/QraphQL/distillery/distilleryList.graphql";
 import DistilleryGQL from "../../hooks/QraphQL/distillery/distillery.graphql";
 //Other
+import { settings } from "../../settings";
 import { withLayout } from "../../layout/Layout";
 import { Error404 } from "../404";
 import { staticApolloClient } from "../../apolloClient";
@@ -63,31 +64,24 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export const getStaticProps: GetStaticProps = async ({
+export const getStaticProps: GetStaticProps<IDistilleryProps> = async ({
   params,
-}: GetStaticPropsContext) => {
+}: GetStaticPropsContext<ParsedUrlQuery>) => {
   if (!params || !params.alias || typeof params.alias !== "string") {
     return { notFound: true };
   }
   const id = params?.alias;
   try {
-    console.log(+new Date(), `--(Distillery)- Get data ->`);
     const { data } = await staticApolloClient.query({
       query: DistilleryGQL,
       variables: { id },
-      fetchPolicy: "no-cache",
+      fetchPolicy: settings.pageStaticPropsCacheFetchPolicy,
     });
-    console.log(
-      +new Date(),
-      `--(Distillery)- Data ->`,
-      data?.getDistillery?.name,
-      data?.getDistillery?.children?.length
-    );
     return {
       props: {
         item: data.getDistillery,
       },
-      revalidate: 60,
+      revalidate: settings.pageStaticPropsRevalidateSecond,
     };
   } catch (errors) {
     // ToDo: 17.12.2021 - may be go to RegionList

@@ -18,6 +18,7 @@ import { WhiskyList_whiskyList_list } from "../../hooks/QraphQL/whisky/__generat
 import WhiskyGQL from "../../hooks/QraphQL/whisky/whisky.graphql";
 import WhiskyListGQL from "../../hooks/QraphQL/whisky/whiskyList.graphql";
 //Other
+import { settings } from "../../settings";
 import { CardInfo } from "../../components";
 import { withLayout } from "../../layout/Layout";
 import { Error404 } from "../404";
@@ -87,11 +88,13 @@ export const getStaticProps: GetStaticProps<IWhiskyProps> = async ({
     const { data } = await staticApolloClient.query<GetWhiskyById>({
       query: WhiskyGQL,
       variables: { id },
+      fetchPolicy: settings.pageStaticPropsCacheFetchPolicy,
     });
     return {
       props: {
         item: data.getWhiskyById,
       },
+      revalidate: settings.pageStaticPropsRevalidateSecond,
     };
   } catch (errors) {
     console.log(+new Date(), "-()->", typeof errors, `-errors->`, errors);
