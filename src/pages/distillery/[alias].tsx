@@ -63,9 +63,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export const getStaticProps: GetStaticProps<IDistilleryProps> = async ({
+export const getStaticProps: GetStaticProps = async ({
   params,
-}: GetStaticPropsContext<ParsedUrlQuery>) => {
+}: GetStaticPropsContext) => {
   if (!params || !params.alias || typeof params.alias !== "string") {
     return { notFound: true };
   }
@@ -79,6 +79,7 @@ export const getStaticProps: GetStaticProps<IDistilleryProps> = async ({
       props: {
         item: data.getDistillery,
       },
+      revalidate: 60,
     };
   } catch (errors) {
     // ToDo: 17.12.2021 - may be go to RegionList
@@ -90,6 +91,5 @@ export const getStaticProps: GetStaticProps<IDistilleryProps> = async ({
     props: {
       item: {},
     },
-    revalidate: 60,
   };
 };
