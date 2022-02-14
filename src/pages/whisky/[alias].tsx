@@ -97,7 +97,18 @@ export const getStaticProps: GetStaticProps<IWhiskyProps> = async ({
       revalidate: settings.pageStaticPropsRevalidateSecond,
     };
   } catch (errors) {
-    console.log(+new Date(), "-()->", typeof errors, `-errors->`, errors);
-    return { notFound: true };
+    console.error(
+      +new Date(),
+      "-(whisky/[id] getStaticProps)->",
+      id,
+      `-errors->`,
+      errors
+    );
+    return {
+      redirect: {
+        destination: "/whisky",
+        permanent: false,
+      },
+    };
   }
 };
