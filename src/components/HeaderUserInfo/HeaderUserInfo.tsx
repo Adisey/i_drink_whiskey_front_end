@@ -15,13 +15,7 @@ const UserInfoMemo: React.FC<IDivMainProps> = ({
   ...props
 }: IDivMainProps): JSX.Element => {
   const { isLoading, email, role } = useWhoAmIMemo();
-  console.log(
-    +new Date(),
-    `--(RENDER)- UserInfoMemo ->`,
-    isLoading,
-    email,
-    role
-  );
+
   return (
     <div {...props} className={cx(Styles.userInfo, className)}>
       <Loading isLoading={isLoading} />
@@ -44,7 +38,7 @@ export const HeaderUserInfo: React.FC<IDivMainProps> = ({
     cleanToken();
     goLogin();
   };
-  console.log(+new Date(), `--(RENDER)- HeaderUserInfo-user ->`, user);
+
   return user ? (
     <div {...props} className={cx(Styles.main, className)}>
       <UserInfoMemo />

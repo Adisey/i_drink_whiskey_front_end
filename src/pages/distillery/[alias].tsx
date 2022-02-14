@@ -66,7 +66,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps<IDistilleryProps> = async ({
   params,
-}: GetStaticPropsContext<ParsedUrlQuery>) => {
+}: GetStaticPropsContext) => {
   if (!params || !params.alias || typeof params.alias !== "string") {
     return { notFound: true };
   }
@@ -84,8 +84,18 @@ export const getStaticProps: GetStaticProps<IDistilleryProps> = async ({
       revalidate: settings.pageStaticPropsRevalidateSecond,
     };
   } catch (errors) {
-    // ToDo: 17.12.2021 - may be go to RegionList
-    console.log(+new Date(), "-()->", typeof errors, `-errors->`, errors);
-    return { notFound: true };
+    console.error(
+      +new Date(),
+      "-(distillery/[id] getStaticProps)->",
+      id,
+      `-errors->`,
+      errors
+    );
+    return {
+      redirect: {
+        destination: "/distillery",
+        permanent: false,
+      },
+    };
   }
 };
