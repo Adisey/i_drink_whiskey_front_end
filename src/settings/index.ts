@@ -1,8 +1,9 @@
 import { FetchPolicy } from "@apollo/client/core/watchQueryOptions";
 
 type ISettings = {
+  backendHost: string;
   pageStaticPropsCacheFetchPolicy: FetchPolicy;
-  [id: string]: any;
+  pageStaticPropsRevalidateSecond: number;
 };
 
 export const settings: ISettings = {
