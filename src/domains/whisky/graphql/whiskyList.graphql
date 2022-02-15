@@ -1,5 +1,5 @@
-query WhiskyList {
-    whiskyList(pageSize: 10000) {
+query WhiskyList ($pageSize: Int, $pageNumber: Int, $find: String, $sortBy: String, $sortOrder: Int) {
+    whiskyList(pageSize: $pageSize, pageNumber: $pageNumber, find: $find, sortBy: $sortBy, sortOrder: $sortOrder) {
         list {
             id
             name

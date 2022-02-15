@@ -30,3 +30,11 @@ export interface WhiskyList_whiskyList {
 export interface WhiskyList {
   whiskyList: WhiskyList_whiskyList;
 }
+
+export interface WhiskyListVariables {
+  pageSize?: number | null;
+  pageNumber?: number | null;
+  find?: string | null;
+  sortBy?: string | null;
+  sortOrder?: number | null;
+}
