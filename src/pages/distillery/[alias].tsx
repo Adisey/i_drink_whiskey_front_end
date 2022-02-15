@@ -6,19 +6,20 @@ import type {
   GetStaticPropsContext,
   NextPage,
 } from "next";
-//Interfaces
-import { ParsedUrlQuery } from "querystring";
-import { IDistilleryListResponse } from "../../hooks/QraphQL/distillery/types";
-import { GetDistillery_getDistillery } from "../../hooks/QraphQL/distillery/__generated__/GetDistillery";
+//Domains
+import {
+  IDistilleryListResponse,
+  GetDistillery_getDistillery,
+  getDistilleryPatch,
+} from "../../domains";
 //GraphQl
-import DistilleryListGQL from "../../hooks/QraphQL/distillery/distilleryList.graphql";
-import DistilleryGQL from "../../hooks/QraphQL/distillery/distillery.graphql";
+import DistilleryListGQL from "domains/distillery/graphql/distilleryList.graphql";
+import DistilleryGQL from "domains/distillery/graphql/distillery.graphql";
 //Other
 import { settings } from "../../settings";
 import { withLayout } from "../../layout/Layout";
 import { Error404 } from "../404";
 import { staticApolloClient } from "../../apolloClient";
-import { getDistilleryPatch } from "../../domains/distillery";
 import { WhiskeyList } from "../../components";
 
 interface IDistilleryProps extends Record<string, unknown> {

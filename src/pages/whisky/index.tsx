@@ -2,7 +2,7 @@ import React from "react";
 import { NextPage } from "next";
 import { pageWrapper } from "../../layout/pageWrapper";
 import { WhiskeyList } from "../../components";
-import { useWhiskyList } from "../../hooks/QraphQL/whisky";
+import { useWhiskyList } from "domains/whisky/hooks";
 
 const WhiskyMain: NextPage = (): JSX.Element => {
   const { loading, data } = useWhiskyList();

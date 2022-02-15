@@ -3,7 +3,7 @@ import React from "react";
 import { NextPage } from "next";
 
 import { pageWrapper } from "../../layout/pageWrapper";
-import { useDistilleryList } from "../../hooks/QraphQL/distillery";
+import { useDistilleryList } from "../../domains";
 import { DistilleryList } from "../../components";
 
 const DistilleryMain: NextPage = (): JSX.Element => {

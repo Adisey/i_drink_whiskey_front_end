@@ -7,7 +7,7 @@ import { IDivMainProps } from "../../interfaces/HTML.elements/div.main.props";
 import { IMenuChildrenList, IMenuItem, makeMenuCountries } from "./";
 //Other
 import { Loading } from "../";
-import { useMenu } from "../../hooks/QraphQL/menu";
+import { useMenu } from "domains/menu/hooks";
 import Arrow from "./arrow.svg";
 //Styles
 import cx from "classnames";

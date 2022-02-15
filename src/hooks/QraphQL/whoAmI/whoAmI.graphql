@@ -1,6 +1,0 @@
-query whoami{
-    whoami{
-        email,
-        role
-    }
-}

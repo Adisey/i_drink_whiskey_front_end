@@ -3,12 +3,12 @@ import {
   PagesListTree_pagesListTree_countries_regions,
   PagesListTree_pagesListTree_countries_regions_distilleries,
   PagesListTree_pagesListTree_countries_regions_distilleries_whiskies,
-} from "../../hooks/QraphQL/menu/__generated__/PagesListTree";
+} from "../../domains/menu/graphql/__generated__/PagesListTree";
 import { IDivMainProps } from "../../interfaces/HTML.elements/div.main.props";
-import { getWhiskyPatch } from "../../domains/whisky";
-import { getDistilleryPatch } from "../../domains/distillery";
+import { getWhiskyPatch } from "domains/whisky/tools";
+import { getDistilleryPatch } from "domains/distillery/tools";
 import { getRegionPatch } from "../../domains/region";
-import { getCountryPatch } from "../../domains/country";
+import { getCountryPatch } from "domains/country/tools";
 
 export interface IMenuItem extends IDivMainProps {
   id: string;

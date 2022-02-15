@@ -5,8 +5,8 @@ import { useForm } from "react-hook-form";
 import cx from "classnames";
 //Other
 import { IDivMainProps } from "../../interfaces/HTML.elements/div.main.props";
-import { loginGQL } from "../../hooks/QraphQL/login";
-import { LoginAPIVariables } from "../../hooks/QraphQL/login/__generated__/LoginAPI";
+import { loginGQL } from "domains/login/hooks";
+import { LoginAPIVariables } from "../../domains/login/graphql/__generated__/LoginAPI";
 import { Input, Button, FieldMessage } from "../";
 import { useAuthApolloProvider } from "../../apolloClient/AuthContext";
 //Styles

@@ -5,7 +5,7 @@ import Router from "next/router";
 import { Button, Loading } from "../";
 import { useAuthApolloProvider } from "../../apolloClient/AuthContext";
 import { IDivMainProps } from "../../interfaces/HTML.elements/div.main.props";
-import { useWhoAmIMemo } from "../../hooks/QraphQL/whoAmI";
+import { useWhoAmIMemo } from "domains/whoAmI/hooks";
 //Styles
 import cx from "classnames";
 import Styles from "./HeaderUserInfo.module.scss";

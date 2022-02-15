@@ -3,7 +3,7 @@ import React from "react";
 import cx from "classnames";
 //Interfaces
 import { IDivMainProps } from "../../interfaces/HTML.elements/div.main.props";
-import { RegionList_regionsList_list } from "../../hooks/QraphQL/region/__generated__/RegionList";
+import { RegionList_regionsList_list } from "../../domains/region/graphql/__generated__/RegionList";
 //Components
 import { RegionListCard } from "./RegionListCard";
 //Styles

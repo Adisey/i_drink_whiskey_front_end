@@ -8,22 +8,22 @@ import type {
 } from "next";
 import { ParsedUrlQuery } from "querystring";
 import { staticApolloClient } from "apolloClient";
-//Interfaces
-import { IDistilleryListResponse } from "../../hooks/QraphQL/distillery/types";
+//Domains
 import {
+  IDistilleryListResponse,
   GetRegion_getRegion,
   GetRegion_getRegion_children,
-} from "../../hooks/QraphQL/region/__generated__/GetRegion";
+  GetDistillery_getDistillery,
+} from "../../domains";
 //GraphQl
-import RegionListGQL from "../../hooks/QraphQL/region/regionList.graphql";
-import GetRegion from "../../hooks/QraphQL/region/region.graphql";
+import RegionListGQL from "domains/region/graphql/regionList.graphql";
+import GetRegion from "domains/region/graphql/region.graphql";
 //Other
 import { settings } from "../../settings";
 import { withLayout } from "layout/Layout";
 import { Error404 } from "../404";
 import { getRegionPatch } from "../../domains/region";
 import { DistilleryList } from "components";
-import { GetDistillery_getDistillery } from "hooks/QraphQL/distillery/__generated__/GetDistillery";
 
 interface IRegionProps extends Record<string, unknown> {
   item: GetRegion_getRegion;

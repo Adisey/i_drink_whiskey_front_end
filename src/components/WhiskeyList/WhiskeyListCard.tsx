@@ -5,10 +5,10 @@ import cx from "classnames";
 //Interfaces
 import { IDivMainProps } from "../../interfaces/HTML.elements/div.main.props";
 //Utils
-import { getWhiskyPatch } from "../../domains/whisky";
+import { getWhiskyPatch } from "domains/whisky/tools";
 //Styles
 import Styles from "./WhiskeyListCard.module.scss";
-import { GetDistillery_getDistillery_children } from "hooks/QraphQL/distillery/__generated__/GetDistillery";
+import { GetDistillery_getDistillery_children } from "domains/distillery/graphql/__generated__/GetDistillery";
 
 interface IWhiskeyListCard extends IDivMainProps {
   whisky: GetDistillery_getDistillery_children;

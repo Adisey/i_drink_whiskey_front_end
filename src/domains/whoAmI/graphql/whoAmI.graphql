@@ -1,0 +1,6 @@
+query Whoami{
+    whoami{
+        email,
+        role
+    }
+}

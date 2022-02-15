@@ -3,7 +3,7 @@ import React from "react";
 import cx from "classnames";
 //Interfaces
 import { IDivMainProps } from "../../interfaces/HTML.elements/div.main.props";
-import { GetDistillery_getDistillery_children } from "../../hooks/QraphQL/distillery/__generated__/GetDistillery";
+import { GetDistillery_getDistillery_children } from "../../domains/distillery/graphql/__generated__/GetDistillery";
 //Components
 import { WhiskeyListCard } from "./WhiskeyListCard";
 //Styles

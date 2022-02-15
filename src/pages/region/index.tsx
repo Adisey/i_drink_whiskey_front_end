@@ -4,7 +4,7 @@ import { NextPage } from "next";
 
 import { pageWrapper } from "../../layout/pageWrapper";
 import { RegionList } from "../../components";
-import { useRegionList } from "../../hooks/QraphQL/region";
+import { useRegionList } from "../../domains/";
 
 const RegionMain: NextPage = (): JSX.Element => {
   const { loading, data } = useRegionList();

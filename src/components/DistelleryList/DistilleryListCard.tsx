@@ -4,9 +4,9 @@ import Link from "next/link";
 import cx from "classnames";
 //Interfaces
 import { IDivMainProps } from "../../interfaces/HTML.elements/div.main.props";
-import { GetDistillery_getDistillery } from "../../hooks/QraphQL/distillery/__generated__/GetDistillery";
+import { GetDistillery_getDistillery } from "../../domains/distillery/graphql/__generated__/GetDistillery";
 //Utils
-import { getDistilleryPatch } from "../../domains/distillery";
+import { getDistilleryPatch } from "domains/distillery/tools";
 //Styles
 import Styles from "./DistilleryListCard.module.scss";
 

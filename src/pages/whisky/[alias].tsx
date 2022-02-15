@@ -7,22 +7,22 @@ import type {
   NextPage,
 } from "next";
 import { ParsedUrlQuery } from "querystring";
-//Interfaces
-import { IWhiskyListResponse } from "../../hooks/QraphQL/whisky/types";
+//Domain
 import {
   GetWhiskyById_getWhiskyById,
   GetWhiskyById,
-} from "../../hooks/QraphQL/whisky/__generated__/GetWhiskyById";
-import { WhiskyList_whiskyList_list } from "../../hooks/QraphQL/whisky/__generated__/WhiskyList";
+  WhiskyList_whiskyList_list,
+  IWhiskyListResponse,
+} from "../../domains";
 // GraphQl
-import WhiskyGQL from "../../hooks/QraphQL/whisky/whisky.graphql";
-import WhiskyListGQL from "../../hooks/QraphQL/whisky/whiskyList.graphql";
+import WhiskyGQL from "../../domains/whisky/graphql/whisky.graphql";
+import WhiskyListGQL from "../../domains/whisky/graphql/whiskyList.graphql";
 //Other
 import { settings } from "../../settings";
 import { CardInfo } from "../../components";
 import { withLayout } from "../../layout/Layout";
 import { Error404 } from "../404";
-import { getWhiskyPatch } from "../../domains/whisky";
+import { getWhiskyPatch } from "../../domains/whisky/tools";
 import { staticApolloClient } from "../../apolloClient";
 import Head from "next/head";
 
